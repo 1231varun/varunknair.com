@@ -133,18 +133,6 @@ export const education: Education[] = [
  */
 export const professionalProjects: Project[] = [
   {
-    id: 'webex-telehealth',
-    title: 'Webex Instant Telehealth Connector for Epic EHR',
-    description: 'Led the development of Webex integration into Epic EHR using WebRTC, enabling seamless telehealth consultations for healthcare providers.',
-    longDescription: 'Architected and developed a comprehensive telehealth solution that integrates Webex video calling capabilities directly into Epic Electronic Health Records system. This groundbreaking solution enables healthcare providers to conduct secure, HIPAA-compliant video consultations with patients without leaving their EHR workflow. The project involved complex WebRTC implementations, custom healthcare APIs, and seamless integration with Epic\'s ecosystem. This innovation significantly improved patient care delivery and reduced consultation setup time from minutes to seconds.',
-    technologies: ['WebRTC', 'Webex SDK', 'React', 'Node.js', 'Epic Integration', 'HIPAA Compliance'],
-    imageUrl: '/projects/webex-telehealth.jpg',
-    projectUrl: 'https://www.cisco.com/products/collaboration-endpoints/webex-healthcare.html',
-    githubUrl: '',
-    featured: true,
-    category: 'web',
-  },
-  {
     id: 'normalyze-dspm',
     title: 'Normalyze Data Security Posture Management Platform',
     description: 'Built scalable microservices and AWS Lambda functions for Data Security Posture Management tools, improving team efficiency by 50%.',
@@ -152,6 +140,18 @@ export const professionalProjects: Project[] = [
     technologies: ['React', 'Node.js', 'AWS Lambda', 'Snowflake', 'Python', 'Docker', 'PostgreSQL', 'Microservices', 'DBT'],
     imageUrl: '/projects/normalyze-dspm.jpg',
     projectUrl: 'https://normalyze.ai',
+    githubUrl: '',
+    featured: true,
+    category: 'web',
+  },
+  {
+    id: 'webex-telehealth',
+    title: 'Webex Instant Telehealth Connector for Epic EHR',
+    description: 'Led the development of Webex integration into Epic EHR using WebRTC, enabling seamless telehealth consultations for healthcare providers.',
+    longDescription: 'Architected and developed a comprehensive telehealth solution that integrates Webex video calling capabilities directly into Epic Electronic Health Records system. This groundbreaking solution enables healthcare providers to conduct secure, HIPAA-compliant video consultations with patients without leaving their EHR workflow. The project involved complex WebRTC implementations, custom healthcare APIs, and seamless integration with Epic\'s ecosystem. This innovation significantly improved patient care delivery and reduced consultation setup time from minutes to seconds.',
+    technologies: ['WebRTC', 'Webex SDK', 'React', 'Node.js', 'Epic Integration', 'HIPAA Compliance'],
+    imageUrl: '/projects/webex-telehealth.jpg',
+    projectUrl: 'https://www.cisco.com/products/collaboration-endpoints/webex-healthcare.html',
     githubUrl: '',
     featured: true,
     category: 'web',

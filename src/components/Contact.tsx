@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { Mail, Phone, MapPin, Send, Loader2, CheckCircle, AlertCircle } from 'lucide-react'
 import { PersonalInfo, ContactFormData } from '@/types'
 import { useScrollAnimation } from '@/hooks/useScrollAnimation'
+import { submitContactForm, validateContactForm } from '@/services/contact'
 
 interface ContactProps {
   personalInfo: PersonalInfo
@@ -20,6 +21,7 @@ const Contact = ({ personalInfo }: ContactProps) => {
 
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [validationErrors, setValidationErrors] = useState<string[]>([])
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -30,18 +32,29 @@ const Contact = ({ personalInfo }: ContactProps) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setValidationErrors([])
+    
+    // Validate form data
+    const validation = validateContactForm(formData)
+    if (!validation.isValid) {
+      setValidationErrors(validation.errors)
+      return
+    }
+
     setIsSubmitting(true)
     
     try {
-      // Simulate form submission
-      await new Promise(resolve => setTimeout(resolve, 1000))
+      const result = await submitContactForm(formData)
       
-      // In a real implementation, you would send the form data to your backend
-  
-      
-      setSubmitStatus('success')
-      setFormData({ name: '', email: '', subject: '', message: '' })
+      if (result.success) {
+        setSubmitStatus('success')
+        setFormData({ name: '', email: '', subject: '', message: '' })
+      } else {
+        setSubmitStatus('error')
+        console.error('Form submission error:', result.error)
+      }
     } catch (error) {
+      console.error('Form submission error:', error)
       setSubmitStatus('error')
     } finally {
       setIsSubmitting(false)
@@ -158,7 +171,15 @@ const Contact = ({ personalInfo }: ContactProps) => {
 
             {/* Contact Form */}
             <motion.div variants={itemVariants}>
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form 
+                name="contact" 
+                method="POST" 
+                data-netlify="true" 
+                onSubmit={handleSubmit} 
+                className="space-y-6"
+              >
+                {/* Hidden input for Netlify form detection */}
+                <input type="hidden" name="form-name" value="contact" />
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -244,6 +265,21 @@ const Contact = ({ personalInfo }: ContactProps) => {
                     </>
                   )}
                 </motion.button>
+
+                {/* Validation Errors */}
+                {validationErrors.length > 0 && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="p-4 bg-yellow-100 dark:bg-yellow-900 text-yellow-700 dark:text-yellow-300 rounded-lg"
+                  >
+                    <ul className="list-disc list-inside space-y-1">
+                      {validationErrors.map((error, index) => (
+                        <li key={index}>{error}</li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                )}
 
                 {/* Status Messages */}
                 {submitStatus === 'success' && (

@@ -4,13 +4,14 @@ A modern, responsive, and highly customizable portfolio website built with React
 
 ## Features
 
-### Core Features
-- **Modern Tech Stack**: React 18, TypeScript, TailwindCSS, Framer Motion
-- **Responsive Design**: Mobile-first approach with seamless desktop experience
-- **Dark/Light Theme**: Toggle between themes with system preference detection
-- **Smooth Animations**: Professional animations powered by Framer Motion
-- **SEO Optimized**: Proper meta tags, Open Graph, and Twitter Card support
-- **Performance Optimized**: Code splitting, lazy loading, and caching strategies
+- **Responsive Design**: Looks great on all devices
+- **Dark/Light Theme**: Toggle between themes
+- **Smooth Animations**: Powered by Framer Motion
+- **SEO Optimized**: Meta tags and semantic HTML
+- **Fast Loading**: Optimized builds and lazy loading
+- **Flexible Contact Forms**: Support for multiple form providers
+- **TypeScript**: Full type safety
+- **Modern Stack**: React 18, Vite, TailwindCSS
 
 ### Sections
 - **Hero Section**: Eye-catching introduction with call-to-action buttons
@@ -24,6 +25,7 @@ A modern, responsive, and highly customizable portfolio website built with React
 - **Personal Configuration**: Type-safe personal data management with automatic Git ignore
 - **Resume Caching**: Intelligent caching for resume downloads with cache management
 - **Analytics Integration**: Privacy-focused analytics with Google Analytics support
+- **Flexible Contact Forms**: Support for multiple providers (Netlify, Vercel, Formspree, EmailJS, Custom)
 - **Type Safety**: Full TypeScript implementation with strict type checking
 - **Code Quality**: ESLint, Prettier, and comprehensive error handling
 - **Build Optimization**: Vite build system with automatic chunking and optimization
@@ -84,7 +86,8 @@ This portfolio uses a hybrid approach that separates sensitive personal data fro
    VITE_PHONE="+1-234-567-8900"
    VITE_GITHUB_URL="https://github.com/yourusername"
    VITE_RESUME_URL="https://drive.google.com/file/d/your-resume-id/view"
-   # ... see personal.example.ts for complete list
+   VITE_CONTACT_PROVIDER="netlify"
+   # ... see .env.example for complete list
    ```
 
 3. **Important**: The `.env` file is gitignored and never committed
@@ -105,6 +108,42 @@ This portfolio uses a hybrid approach that separates sensitive personal data fro
 - **🚀 Reusability**: Professional content provides a template for others
 - **⚡ Simple**: No complex build scripts or external APIs
 - **🛡️ Secure**: Contact information never exposed in public repo
+
+## 📧 Contact Form Setup
+
+This project supports multiple contact form providers. Choose the one that best fits your needs:
+
+### Available Providers
+- **Netlify Forms** (Default) - Zero configuration for Netlify deployments
+- **Vercel** - For Vercel deployments with API routes
+- **Formspree** - Third-party service, no backend required
+- **EmailJS** - Frontend-only solution
+- **Custom Backend** - Your own API endpoint
+
+### Quick Setup for Netlify
+1. Set `VITE_CONTACT_PROVIDER="netlify"` in your `.env` file
+2. Deploy to Netlify - forms are automatically detected
+
+### Switching Providers
+To use a different provider, update your `.env` file:
+```env
+# For Formspree
+VITE_CONTACT_PROVIDER="formspree"
+VITE_CONTACT_ENDPOINT="https://formspree.io/f/your-form-id"
+
+# For EmailJS
+VITE_CONTACT_PROVIDER="emailjs"
+VITE_EMAILJS_SERVICE_ID="your-service-id"
+VITE_EMAILJS_TEMPLATE_ID="your-template-id"
+VITE_EMAILJS_PUBLIC_KEY="your-public-key"
+
+# For Custom Backend
+VITE_CONTACT_PROVIDER="custom"
+VITE_CONTACT_ENDPOINT="https://your-api.com/contact"
+VITE_CONTACT_API_KEY="your-api-key"
+```
+
+For detailed setup instructions for all providers, see [CONTACT_SETUP.md](./CONTACT_SETUP.md)
 
 ### Customizing Content
 
@@ -232,12 +271,15 @@ The project uses TailwindCSS with custom configurations:
    Publish directory: dist
    ```
 
-2. **Personal configuration**
-   - Ensure your `src/config/personal.ts` file is set up correctly
-   - No additional environment variables needed
+2. **Environment variables**
+   - Add all your `VITE_*` variables from `.env` in Netlify dashboard
+   - Go to Site settings → Environment variables
 
 3. **Deploy**
    - Connect repository and deploy
+   - Contact forms work automatically with Netlify Forms
+
+For detailed Netlify deployment instructions, see [NETLIFY_DEPLOYMENT.md](./NETLIFY_DEPLOYMENT.md)
 
 ### Manual Deployment
 
