@@ -23,7 +23,7 @@ export const useGitHubProjects = ({
   const [error, setError] = useState<string | null>(null)
   const [retryCount, setRetryCount] = useState(0)
   // Initialize hasAttempted as true to immediately allow state rendering
-  const [hasAttempted, setHasAttempted] = useState(true)
+  const [hasAttempted] = useState(true)
   const abortControllerRef = useRef<AbortController | null>(null)
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
