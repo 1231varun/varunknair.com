@@ -60,23 +60,29 @@ function App() {
       { name: 'GraphQL', level: 75, category: 'backend' as const },
       { name: 'WebRTC', level: 85, category: 'backend' as const },
       { name: 'Microservices', level: 88, category: 'backend' as const },
+      { name: 'Temporal', level: 82, category: 'backend' as const },
+      { name: 'Orkes Conductor', level: 80, category: 'backend' as const },
 
       // Database
       { name: 'PostgreSQL', level: 88, category: 'database' as const },
       { name: 'MySQL', level: 85, category: 'database' as const },
       { name: 'MongoDB', level: 82, category: 'database' as const },
       { name: 'Redis', level: 78, category: 'database' as const },
-      { name: 'Snowflake', level: 75, category: 'database' as const },
+      { name: 'Snowflake', level: 80, category: 'database' as const },
+      { name: 'Sequelize', level: 85, category: 'database' as const },
 
       // Tools & Others
       { name: 'Docker', level: 85, category: 'tools' as const },
       { name: 'AWS', level: 82, category: 'tools' as const },
+      { name: 'Azure', level: 78, category: 'tools' as const },
       { name: 'Git', level: 95, category: 'tools' as const },
       { name: 'CI/CD', level: 80, category: 'tools' as const },
       { name: 'Webpack', level: 82, category: 'tools' as const },
       { name: 'Vite', level: 88, category: 'tools' as const },
       { name: 'Jest', level: 85, category: 'tools' as const },
       { name: 'Cypress', level: 78, category: 'tools' as const },
+      { name: 'DSPM Tools', level: 85, category: 'tools' as const },
+      { name: 'Data Security', level: 82, category: 'tools' as const },
     ],
   }
 
