@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Mail, Phone, MapPin, Send, Loader2, CheckCircle, AlertCircle } from 'lucide-react'
+import { Mail, Phone, MapPin, Send } from 'lucide-react'
 import { PersonalInfo, ContactFormData } from '@/types'
 import { useScrollAnimation } from '@/hooks/useScrollAnimation'
 import { submitContactForm, validateContactForm } from '@/services/contact'

@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react'
+import { useMemo } from 'react'
 import { motion } from 'framer-motion'
 import { Github, Star, GitFork, ExternalLink, Eye } from 'lucide-react'
 import { useScrollAnimation } from '@/hooks/useScrollAnimation'

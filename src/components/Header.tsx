@@ -10,7 +10,7 @@ interface HeaderProps {
   socialLinks?: SocialLinks
 }
 
-const Header = ({ theme, toggleTheme, personalInfo, socialLinks }: HeaderProps) => {
+const Header = ({ theme, toggleTheme, personalInfo: _personalInfo, socialLinks: _socialLinks }: HeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
 

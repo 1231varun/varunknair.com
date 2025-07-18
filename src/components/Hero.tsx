@@ -9,7 +9,7 @@ interface HeroProps {
   resumeInfo: ResumeInfo
 }
 
-const Hero = ({ personalInfo, socialLinks, resumeInfo }: HeroProps) => {
+const Hero = ({ personalInfo, socialLinks: _socialLinks, resumeInfo }: HeroProps) => {
   const { ref, controls } = useScrollAnimation()
 
   const scrollToAbout = () => {
