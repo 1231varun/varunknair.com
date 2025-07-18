@@ -1,0 +1,188 @@
+{
+  "_comment": "🌐 PORTFOLIO INTERNATIONALIZATION - ENGLISH",
+  "_instructions": {
+    "_DO_NOT_EDIT": "🔒 GENERIC UI TEXT - Keep these as-is (reusable across all portfolios)",
+    "_CUSTOMIZE_REQUIRED": "✏️ PERSONAL CONTENT - Replace with your own information",
+    "_EXAMPLE_CONTENT": "📝 CONTENT EXAMPLES - Replace with your actual experience/projects"
+  },
+
+  "navigation": {
+    "_comment": "🔒 Generic navigation labels - keep as-is",
+    "about": "About",
+    "skills": "Skills", 
+    "experience": "Experience",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+
+  "hero": {
+    "_comment": "🔒 Generic hero UI text - keep as-is",
+    "greeting": "Hi, I'm",
+    "cta": {
+      "viewWork": "View My Work",
+      "contact": "Get In Touch"
+    }
+  },
+
+  "about": {
+    "_comment": "🔒 Generic about section UI text - keep as-is",
+    "title": "About Me",
+    "subtitle": "Passionate about creating exceptional digital experiences",
+    "downloadResume": "Download Resume",
+    "viewResume": "View Resume",
+    "yearsExperience": "{{years}}+ Years Experience",
+    "projectsCompleted": "Projects Completed",
+    "technologiesMastered": "Technologies Mastered"
+  },
+
+  "skills": {
+    "_comment": "🔒 Generic skills section UI text - keep as-is",
+    "title": "Skills & Technologies",
+    "subtitle": "Technologies I work with to create amazing digital experiences",
+    "categories": {
+      "frontend": "Frontend",
+      "backend": "Backend", 
+      "database": "Database",
+      "tools": "Tools & Others"
+    }
+  },
+
+  "experience": {
+    "_comment": "🔒 Generic experience section UI text - keep as-is",
+    "title": "Professional Experience",
+    "subtitle": "My journey through various roles and organizations",
+    "current": "Current",
+    "technologies": "Technologies",
+    "_content_comment": "📝 REPLACE: Add your actual work experience below",
+    "jobs": {
+      "proofpoint": {
+        "company": "Proofpoint (Through Normalyze acquisition)",
+        "position": "Senior Software Engineer",
+        "duration": "11/2024 - Present",
+        "location": "Bangalore, India",
+        "description": [
+          "Enhanced workflow efficiency through the redesign and transition to Temporal from Orkes Conductor",
+          "Led and contributed to the development of a unified, reusable workflow from existing processes", 
+          "Achieved a 50% improvement in team efficiency by shortening integration timelines from eight weeks down to four weeks"
+        ]
+      },
+      "normalyze": {
+        "company": "Normalyze.ai (Acquired by Proofpoint)",
+        "position": "Senior Full Stack Engineer", 
+        "duration": "10/2023 - 11/2024",
+        "location": "Bengaluru, India",
+        "description": [
+          "Designed and implemented a scalable ad-hoc job workflow framework to integrate diverse workflows for seamless data updates",
+          "Built and optimized high-scale microservices and AWS Lambda functions to enhance DSPM tools performance",
+          "Led the design, development, and maintenance of SaaS application onboarding flow components and backend APIs",
+          "Developed the SaaS DataScan Overview page utilizing Snowflake DBT for data aggregation",
+          "Built reusable ReactJS components for data visualization, enhancing the platform's web UI with valuable insights"
+        ]
+      },
+      "cisco": {
+        "company": "Cisco Systems India Private Limited",
+        "position": "Senior Software Engineer",
+        "duration": "09/2019 - 10/2023", 
+        "location": "Bangalore, Karnataka",
+        "description": [
+          "Led UI Development of Endpoint Security Posture configurations for Cisco Security Business Group (Umbrella/Secure Service Edge)",
+          "Led planning and design for the frontend team and performed the role of scrum master",
+          "Led the technical design and implementation of extendable and reusable react components that increased development velocity by 40%",
+          "Mentored junior engineers enabling them to achieve professional growth and personal goals",
+          "Built react based micro-frontends that integrate with Cisco Secure Service Edge Dashboard",
+          "Led the effort on building the Webex Instant Telehealth Connector for Epic EHR using WebRTC"
+        ]
+      }
+    }
+  },
+
+  "projects": {
+    "_comment": "🔒 Generic projects section UI text - keep as-is",
+    "title": "Featured Projects",
+    "subtitle": "Some of my recent work and contributions",
+    "viewProject": "View Project",
+    "viewCode": "View Code",
+    "liveDemo": "Live Demo",
+    "categories": {
+      "all": "All",
+      "web": "Web Apps",
+      "mobile": "Mobile",
+      "api": "APIs"
+    },
+    "_content_comment": "📝 REPLACE: Add your actual projects below",
+    "items": {
+      "webex-telehealth": {
+        "title": "Webex Instant Telehealth Connector for Epic EHR",
+        "description": "Led the development of Webex integration into Epic EHR using WebRTC, enabling seamless telehealth consultations for healthcare providers.",
+        "longDescription": "Architected and developed a comprehensive telehealth solution that integrates Webex video calling capabilities directly into Epic Electronic Health Records system. This groundbreaking solution enables healthcare providers to conduct secure, HIPAA-compliant video consultations with patients without leaving their EHR workflow."
+      },
+      "normalyze-dspm": {
+        "title": "Normalyze Data Security Posture Management Platform", 
+        "description": "Built scalable microservices and AWS Lambda functions for Data Security Posture Management tools, improving team efficiency by 50%.",
+        "longDescription": "Designed and implemented a comprehensive Data Security Posture Management (DSPM) platform that helps organizations discover, classify, and protect sensitive data across multi-cloud environments."
+      }
+    }
+  },
+
+  "contact": {
+    "_comment": "🔒 Generic contact section UI text - keep as-is",
+    "title": "Get In Touch",
+    "subtitle": "Have a project in mind or want to collaborate? I'd love to hear from you! Let's create something extraordinary together.",
+    "form": {
+      "name": "Name",
+      "email": "Email", 
+      "subject": "Subject",
+      "message": "Message",
+      "namePlaceholder": "Your name",
+      "emailPlaceholder": "your.email@example.com",
+      "subjectPlaceholder": "What's this about?",
+      "messagePlaceholder": "Tell me about your project or idea...",
+      "sending": "Sending...",
+      "send": "Send Message",
+      "success": "Thank you! Your message has been sent successfully.",
+      "error": "Sorry, there was an error sending your message. Please try again.",
+      "validation": {
+        "nameRequired": "Name is required",
+        "emailRequired": "Email is required", 
+        "emailInvalid": "Please enter a valid email address",
+        "subjectRequired": "Subject is required",
+        "messageRequired": "Message is required",
+        "messageMinLength": "Message must be at least 10 characters long"
+      }
+    },
+    "info": {
+      "_comment": "✏️ CUSTOMIZE: Update this description to match your personality",
+      "title": "Let's Connect",
+      "description": "I'm always interested in hearing about new opportunities and exciting projects. Whether you're a company looking to hire, or you're a fellow developer wanting to collaborate, don't hesitate to reach out!",
+      "email": "Email",
+      "phone": "Phone",
+      "location": "Location"
+    }
+  },
+
+  "footer": {
+    "_comment": "🔒 Generic footer text - keep as-is",
+    "copyright": "© {{year}} {{name}}. All rights reserved.",
+    "builtWith": "Built with ❤️ using React, TypeScript & TailwindCSS"
+  },
+
+  "theme": {
+    "_comment": "🔒 Generic theme controls - keep as-is", 
+    "toggle": "Toggle theme",
+    "light": "Light mode",
+    "dark": "Dark mode"
+  },
+
+  "accessibility": {
+    "_comment": "🔒 Generic accessibility labels - keep as-is",
+    "toggleMenu": "Toggle menu",
+    "closeMenu": "Close menu", 
+    "scrollToTop": "Scroll to top"
+  },
+
+  "meta": {
+    "_comment": "✏️ CUSTOMIZE: SEO meta templates - will use your personal info from .env",
+    "title": "{{name}} - Senior Software Engineer | React, Node.js, Python Expert | {{location}}",
+    "description": "{{name}} - Senior Software Engineer with {{years}}+ years building scalable applications. Expert in React, Node.js, Python, JavaScript, TypeScript. Former {{companies}} engineer in {{location}}."
+  }
+} 

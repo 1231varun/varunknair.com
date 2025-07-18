@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Mail, Phone, MapPin, Send } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { PersonalInfo, ContactFormData } from '@/types'
 import { useScrollAnimation } from '@/hooks/useScrollAnimation'
 import { submitContactForm, validateContactForm } from '@/services/contact'
@@ -10,6 +11,7 @@ interface ContactProps {
 }
 
 const Contact = ({ personalInfo }: ContactProps) => {
+  const { t } = useTranslation()
   const { ref, controls } = useScrollAnimation({ threshold: 0.2 })
 
   const [formData, setFormData] = useState<ContactFormData>({
@@ -35,7 +37,7 @@ const Contact = ({ personalInfo }: ContactProps) => {
     setValidationErrors([])
     
     // Validate form data
-    const validation = validateContactForm(formData)
+    const validation = validateContactForm(formData, t)
     if (!validation.isValid) {
       setValidationErrors(validation.errors)
       return
@@ -114,10 +116,10 @@ const Contact = ({ personalInfo }: ContactProps) => {
           animate={controls}
         >
           <motion.div className="text-center mb-16" variants={itemVariants}>
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4">Get In Touch</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4">{t('contact.title')}</h2>
             <div className="w-20 h-1 bg-primary-600 mx-auto rounded-full" />
             <p className="text-lg text-gray-600 dark:text-gray-300 mt-6 max-w-2xl mx-auto">
-              Have a project in mind or want to collaborate? I'd love to hear from you! Let's create something extraordinary together.
+              {t('contact.subtitle')}
             </p>
           </motion.div>
 

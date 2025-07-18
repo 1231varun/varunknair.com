@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { ArrowDown, Download, Eye } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { PersonalInfo, SocialLinks, ResumeInfo } from '@/types'
 import { useScrollAnimation } from '@/hooks/useScrollAnimation'
 
@@ -10,6 +11,7 @@ interface HeroProps {
 }
 
 const Hero = ({ personalInfo, socialLinks: _socialLinks, resumeInfo }: HeroProps) => {
+  const { t } = useTranslation()
   const { ref, controls } = useScrollAnimation()
 
   const scrollToAbout = () => {
@@ -77,7 +79,7 @@ const Hero = ({ personalInfo, socialLinks: _socialLinks, resumeInfo }: HeroProps
             variants={itemVariants}
           >
             <span className="block text-lg sm:text-xl md:text-2xl font-normal text-gray-600 dark:text-gray-400 mb-2">
-              Hi, I'm
+              {t('hero.greeting')}
             </span>
             <span className="text-gradient">
               {personalInfo.fullName}

@@ -166,27 +166,27 @@ export async function submitContactForm(data: ContactFormData): Promise<ContactS
 }
 
 // Validation function
-export function validateContactForm(data: ContactFormData): { isValid: boolean; errors: string[] } {
+export function validateContactForm(data: ContactFormData, t?: (key: string) => string): { isValid: boolean; errors: string[] } {
   const errors: string[] = []
 
   if (!data.name.trim()) {
-    errors.push('Name is required')
+    errors.push(t?.('contact.form.validation.nameRequired') || 'Name is required')
   }
 
   if (!data.email.trim()) {
-    errors.push('Email is required')
+    errors.push(t?.('contact.form.validation.emailRequired') || 'Email is required')
   } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
-    errors.push('Please enter a valid email address')
+    errors.push(t?.('contact.form.validation.emailInvalid') || 'Please enter a valid email address')
   }
 
   if (!data.subject.trim()) {
-    errors.push('Subject is required')
+    errors.push(t?.('contact.form.validation.subjectRequired') || 'Subject is required')
   }
 
   if (!data.message.trim()) {
-    errors.push('Message is required')
+    errors.push(t?.('contact.form.validation.messageRequired') || 'Message is required')
   } else if (data.message.trim().length < 10) {
-    errors.push('Message must be at least 10 characters long')
+    errors.push(t?.('contact.form.validation.messageMinLength') || 'Message must be at least 10 characters long')
   }
 
   return { isValid: errors.length === 0, errors }

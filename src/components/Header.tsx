@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Menu, X, Sun, Moon } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { Theme, PersonalInfo, SocialLinks } from '@/types'
+import LanguageSelector from './LanguageSelector'
 
 interface HeaderProps {
   theme: Theme
@@ -11,6 +13,7 @@ interface HeaderProps {
 }
 
 const Header = ({ theme, toggleTheme, personalInfo: _personalInfo, socialLinks: _socialLinks }: HeaderProps) => {
+  const { t } = useTranslation()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
 
@@ -24,11 +27,11 @@ const Header = ({ theme, toggleTheme, personalInfo: _personalInfo, socialLinks: 
   }, [])
 
   const navItems = [
-    { href: '#about', label: 'About' },
-    { href: '#skills', label: 'Skills' },
-    { href: '#experience', label: 'Experience' },
-    { href: '#projects', label: 'Projects' },
-    { href: '#contact', label: 'Contact' },
+    { href: '#about', label: t('navigation.about') },
+    { href: '#skills', label: t('navigation.skills') },
+    { href: '#experience', label: t('navigation.experience') },
+    { href: '#projects', label: t('navigation.projects') },
+    { href: '#contact', label: t('navigation.contact') },
   ]
 
   const scrollToSection = (href: string) => {
@@ -67,7 +70,7 @@ const Header = ({ theme, toggleTheme, personalInfo: _personalInfo, socialLinks: 
           </motion.div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden md:flex items-center space-x-6">
             {navItems.map((item) => (
               <motion.button
                 key={item.href}
@@ -80,30 +83,34 @@ const Header = ({ theme, toggleTheme, personalInfo: _personalInfo, socialLinks: 
               </motion.button>
             ))}
 
-            {/* Theme Toggle */}
-            <motion.button
-              onClick={toggleTheme}
-              className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              aria-label="Toggle theme"
-            >
-              {theme === 'light' ? (
-                <Moon className="w-5 h-5" />
-              ) : (
-                <Sun className="w-5 h-5" />
-              )}
-            </motion.button>
+            {/* Language Selector & Theme Toggle */}
+            <div className="flex items-center gap-3">
+              <LanguageSelector />
+              <motion.button
+                onClick={toggleTheme}
+                className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                aria-label={t('theme.toggle')}
+              >
+                {theme === 'light' ? (
+                  <Moon className="w-5 h-5" />
+                ) : (
+                  <Sun className="w-5 h-5" />
+                )}
+              </motion.button>
+            </div>
           </nav>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center space-x-4">
+          <div className="md:hidden flex items-center space-x-3">
+            <LanguageSelector />
             <motion.button
               onClick={toggleTheme}
               className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
-              aria-label="Toggle theme"
+              aria-label={t('theme.toggle')}
             >
               {theme === 'light' ? (
                 <Moon className="w-5 h-5" />

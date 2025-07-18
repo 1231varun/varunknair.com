@@ -1,0 +1,130 @@
+{
+  "_comment": "🌐 PORTFOLIO INTERNATIONALIZATION - SPANISH",
+  "_instructions": {
+    "_DO_NOT_EDIT": "🔒 TEXTO UI GENÉRICO - Mantén estos como están (reutilizable en todos los portfolios)",
+    "_CUSTOMIZE_REQUIRED": "✏️ CONTENIDO PERSONAL - Reemplaza con tu propia información",
+    "_EXAMPLE_CONTENT": "📝 EJEMPLOS DE CONTENIDO - Reemplaza con tu experiencia/proyectos reales"
+  },
+
+  "navigation": {
+    "_comment": "🔒 Etiquetas de navegación genéricas - mantener como están",
+    "about": "Acerca de",
+    "skills": "Habilidades", 
+    "experience": "Experiencia",
+    "projects": "Proyectos",
+    "contact": "Contacto"
+  },
+
+  "hero": {
+    "_comment": "🔒 Texto UI del héroe genérico - mantener como está",
+    "greeting": "Hola, soy",
+    "cta": {
+      "viewWork": "Ver Mi Trabajo",
+      "contact": "Ponerse en Contacto"
+    }
+  },
+
+  "about": {
+    "_comment": "🔒 Texto UI de sección acerca de genérico - mantener como está",
+    "title": "Acerca de Mí",
+    "subtitle": "Apasionado por crear experiencias digitales excepcionales",
+    "downloadResume": "Descargar CV",
+    "viewResume": "Ver CV",
+    "yearsExperience": "{{years}}+ Años de Experiencia",
+    "projectsCompleted": "Proyectos Completados",
+    "technologiesMastered": "Tecnologías Dominadas"
+  },
+
+  "experience": {
+    "_comment": "🔒 Texto UI de sección experiencia genérico - mantener como está",
+    "title": "Experiencia Profesional",
+    "subtitle": "Mi trayectoria a través de varios roles y organizaciones",
+    "current": "Actual",
+    "technologies": "Tecnologías",
+    "_content_comment": "📝 REEMPLAZAR: Agrega tu experiencia laboral real abajo",
+    "jobs": {
+      "proofpoint": {
+        "company": "Proofpoint (A través de adquisición de Normalyze)",
+        "position": "Ingeniero de Software Senior",
+        "duration": "11/2024 - Presente",
+        "location": "Bangalore, India",
+        "description": [
+          "Mejoré la eficiencia del flujo de trabajo mediante el rediseño y transición a Temporal desde Orkes Conductor",
+          "Lideré y contribuí al desarrollo de un flujo de trabajo unificado y reutilizable a partir de procesos existentes",
+          "Logré una mejora del 50% en la eficiencia del equipo al acortar los tiempos de integración de ocho semanas a cuatro semanas"
+        ]
+      }
+    }
+  },
+
+  "projects": {
+    "_comment": "🔒 Texto UI de sección proyectos genérico - mantener como está",
+    "title": "Proyectos Destacados",
+    "subtitle": "Algunos de mis trabajos y contribuciones recientes",
+    "viewProject": "Ver Proyecto",
+    "viewCode": "Ver Código",
+    "liveDemo": "Demo en Vivo",
+    "categories": {
+      "all": "Todos",
+      "web": "Apps Web",
+      "mobile": "Móvil",
+      "api": "APIs"
+    }
+  },
+
+  "contact": {
+    "_comment": "🔒 Texto UI de sección contacto genérico - mantener como está",
+    "title": "Ponerse en Contacto",
+    "subtitle": "¿Tienes un proyecto en mente o quieres colaborar? ¡Me encantaría saber de ti! Creemos algo extraordinario juntos.",
+    "form": {
+      "name": "Nombre",
+      "email": "Correo Electrónico",
+      "subject": "Asunto",
+      "message": "Mensaje",
+      "namePlaceholder": "Tu nombre",
+      "emailPlaceholder": "tu.correo@ejemplo.com",
+      "subjectPlaceholder": "¿De qué se trata?",
+      "messagePlaceholder": "Cuéntame sobre tu proyecto o idea...",
+      "sending": "Enviando...",
+      "send": "Enviar Mensaje",
+      "success": "¡Gracias! Tu mensaje ha sido enviado exitosamente.",
+      "error": "Lo siento, hubo un error al enviar tu mensaje. Por favor intenta de nuevo.",
+      "validation": {
+        "nameRequired": "El nombre es requerido",
+        "emailRequired": "El correo electrónico es requerido",
+        "emailInvalid": "Por favor ingresa una dirección de correo válida",
+        "subjectRequired": "El asunto es requerido",
+        "messageRequired": "El mensaje es requerido",
+        "messageMinLength": "El mensaje debe tener al menos 10 caracteres"
+      }
+    },
+    "info": {
+      "_comment": "✏️ PERSONALIZAR: Actualiza esta descripción para que coincida con tu personalidad",
+      "title": "Conectemos",
+      "description": "Siempre estoy interesado en escuchar sobre nuevas oportunidades y proyectos emocionantes. Ya sea que seas una empresa que busca contratar, o un desarrollador compañero que quiere colaborar, ¡no dudes en comunicarte!",
+      "email": "Correo",
+      "phone": "Teléfono",
+      "location": "Ubicación"
+    }
+  },
+
+  "footer": {
+    "_comment": "🔒 Texto de pie de página genérico - mantener como está",
+    "copyright": "© {{year}} {{name}}. Todos los derechos reservados.",
+    "builtWith": "Construido con ❤️ usando React, TypeScript y TailwindCSS"
+  },
+
+  "theme": {
+    "_comment": "🔒 Controles de tema genéricos - mantener como está",
+    "toggle": "Cambiar tema",
+    "light": "Modo claro",
+    "dark": "Modo oscuro"
+  },
+
+  "accessibility": {
+    "_comment": "🔒 Etiquetas de accesibilidad genéricas - mantener como está",
+    "toggleMenu": "Alternar menú",
+    "closeMenu": "Cerrar menú",
+    "scrollToTop": "Volver arriba"
+  }
+} 
