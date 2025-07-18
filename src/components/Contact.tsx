@@ -117,7 +117,7 @@ const Contact = ({ personalInfo }: ContactProps) => {
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">Get In Touch</h2>
             <div className="w-20 h-1 bg-primary-600 mx-auto rounded-full" />
             <p className="text-lg text-gray-600 dark:text-gray-300 mt-6 max-w-2xl mx-auto">
-              Have a project in mind or want to collaborate? I'd love to hear from you!
+              Have a project in mind or want to collaborate? I'd love to hear from you! Let's create something extraordinary together.
             </p>
           </motion.div>
 
