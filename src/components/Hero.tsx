@@ -62,7 +62,7 @@ const Hero = ({ personalInfo, socialLinks: _socialLinks, resumeInfo }: HeroProps
   return (
     <section
       id="hero"
-      className="min-h-screen flex items-center justify-center relative bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800"
+      className="min-h-screen flex items-center justify-center relative bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 pt-20"
       ref={ref}
     >
       <div className="container-max-width section-padding">
@@ -73,24 +73,26 @@ const Hero = ({ personalInfo, socialLinks: _socialLinks, resumeInfo }: HeroProps
           animate={controls}
         >
           <motion.h1
-            className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 px-4 sm:px-0"
             variants={itemVariants}
           >
-            Hi, I'm{' '}
+            <span className="block text-lg sm:text-xl md:text-2xl font-normal text-gray-600 dark:text-gray-400 mb-2">
+              Hi, I'm
+            </span>
             <span className="text-gradient">
               {personalInfo.fullName}
             </span>
           </motion.h1>
 
           <motion.p
-            className="text-xl sm:text-2xl text-gray-600 dark:text-gray-300 mb-8 font-medium"
+            className="text-lg sm:text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-6 sm:mb-8 font-medium px-4 sm:px-0"
             variants={itemVariants}
           >
             {personalInfo.tagline}
           </motion.p>
 
           <motion.p
-            className="text-lg text-gray-700 dark:text-gray-400 mb-12 max-w-2xl mx-auto leading-relaxed"
+            className="text-base sm:text-lg text-gray-700 dark:text-gray-400 mb-8 sm:mb-12 max-w-2xl mx-auto leading-relaxed px-4 sm:px-0"
             variants={itemVariants}
           >
             {personalInfo.bio}

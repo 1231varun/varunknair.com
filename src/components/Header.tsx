@@ -51,7 +51,7 @@ const Header = ({ theme, toggleTheme, personalInfo: _personalInfo, socialLinks: 
       transition={{ duration: 0.5 }}
     >
       <div className="container-max-width section-padding">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-14 sm:h-16">
           {/* Logo */}
           <motion.div
             className="text-xl font-bold text-gradient"
@@ -62,7 +62,7 @@ const Header = ({ theme, toggleTheme, personalInfo: _personalInfo, socialLinks: 
               onClick={() => scrollToSection('#hero')}
               className="focus:outline-none"
             >
-              Portfolio
+              VKN
             </button>
           </motion.div>
 
@@ -141,7 +141,10 @@ const Header = ({ theme, toggleTheme, personalInfo: _personalInfo, socialLinks: 
               {navItems.map((item) => (
                 <motion.button
                   key={item.href}
-                  onClick={() => scrollToSection(item.href)}
+                  onClick={() => {
+                    scrollToSection(item.href)
+                    setIsMenuOpen(false)
+                  }}
                   className="text-left text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200 font-medium py-2"
                   whileHover={{ x: 10 }}
                   whileTap={{ x: 0 }}
