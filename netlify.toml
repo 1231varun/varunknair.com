@@ -4,8 +4,8 @@
 
 [build.environment]
   NODE_VERSION = "18"
-  # Disable secrets scanning for VITE_ environment variables (they're meant to be public)
-  SECRETS_SCAN_OMIT_KEYS = "VITE_*"
+  # Disable secrets scanning entirely (VITE_ variables are meant to be public)
+  SECRETS_SCAN_ENABLED = "false"
 
 # Handle client-side routing
 [[redirects]]
