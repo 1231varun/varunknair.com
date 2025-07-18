@@ -21,7 +21,7 @@
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' *.googletagmanager.com *.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: *.githubusercontent.com; font-src 'self' data:; connect-src 'self' *.google-analytics.com *.analytics.google.com *.googletagmanager.com api.github.com;"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' *.googletagmanager.com *.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: *.githubusercontent.com; font-src 'self' data:; frame-src 'self' *.google.com *.googleusercontent.com drive.google.com docs.google.com; connect-src 'self' *.google-analytics.com *.analytics.google.com *.googletagmanager.com api.github.com;"
 
 # Cache static assets
 [[headers]]
