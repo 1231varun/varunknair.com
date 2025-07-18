@@ -110,6 +110,12 @@
     "viewAll": "Ver Todos los Repositorios en GitHub",
     "noRepos": "Sin Repositorios Públicos",
     "noReposDescription": "No se encontraron repositorios públicos o no cumplen los criterios.",
+    "unableToLoad": "No se Pueden Cargar los Repositorios",
+    "tryAgain": "Intentar de Nuevo",
+    "refresh": "Actualizar",
+    "retryAttempt": "Intento de reintento",
+    "loadingTimeout": "Los repositorios están tardando más de lo esperado en cargar. Por favor, inténtalo de nuevo.",
+    "initializing": "Inicializando...",
     "stats": {
       "stars": "Estrellas",
       "forks": "Forks"
@@ -163,6 +169,20 @@
     "copyright": "© {{year}} {{name}}. Todos los derechos reservados.",
     "builtWith": "Hecho con ❤️ usando React, TypeScript y TailwindCSS",
     "description": "Gracias por visitar mi portafolio. Siempre estoy emocionado de trabajar en nuevos proyectos y colaborar con personas increíbles. ¡Construyamos algo genial juntos!"
+  },
+
+  "resume": {
+    "_comment": "🔒 Texto genérico de vista previa de currículum - mantener como está",
+    "preview": {
+      "title": "Vista Previa del CV",
+      "subtitle": "Currículum Profesional",
+      "loading": "Cargando currículum...",
+      "openExternal": "Abrir en Nueva Pestaña",
+      "error": {
+        "title": "No se Puede Cargar el CV",
+        "description": "La vista previa del currículum no se pudo cargar. Aún puedes descargarlo o verlo en una nueva pestaña."
+      }
+    }
   },
 
   "theme": {

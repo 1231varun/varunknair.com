@@ -1,0 +1,201 @@
+{
+  "_comment": "🌐 PORTFOLIO INTERNATIONALIZATION - DEUTSCH",
+  "_instructions": {
+    "_DO_NOT_EDIT": "🔒 GENERISCHER UI-TEXT - Diese beibehalten (wiederverwendbar in allen Portfolios)",
+    "_CUSTOMIZE_REQUIRED": "✏️ PERSÖNLICHER INHALT - Mit eigenen Informationen ersetzen",
+    "_EXAMPLE_CONTENT": "📝 BEISPIELINHALT - Mit echter Erfahrung/Projekten ersetzen"
+  },
+
+  "navigation": {
+    "_comment": "🔒 Generische Navigationsbezeichnungen - beibehalten",
+    "about": "Über Mich",
+    "skills": "Fähigkeiten",
+    "experience": "Erfahrung",
+    "projects": "Projekte",
+    "contact": "Kontakt"
+  },
+
+  "hero": {
+    "_comment": "🔒 Generischer Hero-UI-Text - beibehalten",
+    "greeting": "Hallo, ich bin",
+    "cta": {
+      "viewWork": "Meine Arbeit Ansehen",
+      "contact": "Kontakt Aufnehmen"
+    }
+  },
+
+  "about": {
+    "_comment": "🔒 Generischer Über-Mich-Bereich UI-Text - beibehalten",
+    "title": "Über Mich",
+    "subtitle": "Leidenschaftlich für die Entwicklung außergewöhnlicher digitaler Erfahrungen",
+    "downloadResume": "Lebenslauf Herunterladen",
+    "viewResume": "Lebenslauf Ansehen",
+    "yearsExperience": "{{years}}+ Jahre Erfahrung",
+    "projectsCompleted": "Abgeschlossene Projekte",
+    "technologiesMastered": "Beherrschte Technologien"
+  },
+
+  "skills": {
+    "_comment": "🔒 Generischer Fähigkeiten-Bereich UI-Text - beibehalten",
+    "title": "Fähigkeiten und Technologien",
+    "subtitle": "Technologien, mit denen ich arbeite, um unglaubliche digitale Erfahrungen zu schaffen",
+    "categories": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "database": "Datenbank",
+      "tools": "Tools und Sonstiges"
+    },
+    "stats": {
+      "technologies": "Technologien",
+      "categories": "Kategorien",
+      "proficiency": "Durchschnittliche Kompetenz",
+      "experience": "Jahre Erfahrung"
+    }
+  },
+
+  "experience": {
+    "_comment": "🔒 Generischer Erfahrungs-Bereich UI-Text - beibehalten",
+    "title": "Berufserfahrung",
+    "subtitle": "Mein Weg durch verschiedene Rollen und Organisationen",
+    "current": "Aktuell",
+    "technologies": "Technologien",
+    "_content_comment": "📝 ERSETZEN: Fügen Sie Ihre echte Berufserfahrung unten hinzu",
+    "jobs": {
+      "proofpoint": {
+        "company": "Proofpoint (Durch Übernahme von Normalyze)",
+        "position": "Senior Software Engineer",
+        "duration": "11/2024 - Gegenwart",
+        "location": "Bangalore, Indien",
+        "description": [
+          "Verbesserte die Workflow-Effizienz durch Neugestaltung und Übergang zu Temporal von Orkes Conductor",
+          "Leitete und trug zur Entwicklung eines einheitlichen und wiederverwendbaren Workflows aus bestehenden Prozessen bei",
+          "Erreichte 50% Verbesserung der Teameffizienz durch Verkürzung der Einarbeitungszeiten von acht auf vier Wochen"
+        ]
+      }
+    }
+  },
+
+  "projects": {
+    "_comment": "🔒 Generischer Projekt-Bereich UI-Text - beibehalten",
+    "title": "Ausgewählte Projekte",
+    "subtitle": "Einige meiner aktuellen Arbeiten und Beiträge",
+    "viewProject": "Projekt Ansehen",
+    "viewCode": "Code Ansehen",
+    "liveDemo": "Live Demo",
+    "professional": "Beruflich",
+    "viewDetails": "Details Ansehen",
+    "view": "Ansehen",
+    "code": "Code",
+    "showLess": "Weniger Anzeigen",
+    "showMoreProjects": "Mehr Projekte Anzeigen",
+    "more": "mehr",
+    "technologiesUsed": "Verwendete Technologien",
+    "category": "Kategorie",
+    "sourceCode": "Quellcode",
+    "close": "Schließen",
+    "categories": {
+      "all": "Alle",
+      "web": "Web-Apps",
+      "mobile": "Mobil",
+      "api": "APIs"
+    }
+  },
+
+  "github": {
+    "_comment": "🔒 Generischer GitHub-Bereich Text - beibehalten",
+    "title": "GitHub Repositories",
+    "subtitle": "Eine Auswahl meiner Open-Source-Projekte und Beiträge",
+    "loading": "Repositories werden geladen...",
+    "viewProfile": "GitHub-Profil Ansehen",
+    "viewAll": "Alle Repositories auf GitHub Ansehen",
+    "noRepos": "Keine Öffentlichen Repositories",
+    "noReposDescription": "Keine öffentlichen Repositories gefunden oder sie erfüllen nicht die Kriterien.",
+    "unableToLoad": "Repositories Können Nicht Geladen Werden",
+    "tryAgain": "Erneut Versuchen",
+    "refresh": "Aktualisieren",
+    "retryAttempt": "Wiederholungsversuch",
+    "loadingTimeout": "Die Repositories benötigen länger als erwartet zum Laden. Bitte versuchen Sie es erneut.",
+    "initializing": "Initialisierung...",
+    "stats": {
+      "stars": "Sterne",
+      "forks": "Forks"
+    },
+    "actions": {
+      "code": "Code",
+      "demo": "Demo"
+    }
+  },
+
+  "contact": {
+    "_comment": "🔒 Generischer Kontakt-Bereich UI-Text - beibehalten",
+    "title": "Kontakt Aufnehmen",
+    "subtitle": "Haben Sie ein Projekt im Kopf oder möchten zusammenarbeiten? Ich würde gerne von Ihnen hören! Lassen Sie uns gemeinsam etwas Außergewöhnliches schaffen.",
+    "form": {
+      "name": "Name",
+      "email": "E-Mail",
+      "subject": "Betreff",
+      "message": "Nachricht",
+      "namePlaceholder": "Ihr Name",
+      "emailPlaceholder": "ihre.email@beispiel.com",
+      "subjectPlaceholder": "Worum geht es?",
+      "messagePlaceholder": "Erzählen Sie mir von Ihrem Projekt oder Ihrer Idee...",
+      "sending": "Wird gesendet...",
+      "send": "Nachricht Senden",
+      "success": "Vielen Dank! Ihre Nachricht wurde erfolgreich gesendet.",
+      "error": "Entschuldigung, beim Senden Ihrer Nachricht ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
+      "validation": {
+        "nameRequired": "Name ist erforderlich",
+        "emailRequired": "E-Mail ist erforderlich",
+        "emailInvalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
+        "subjectRequired": "Betreff ist erforderlich",
+        "messageRequired": "Nachricht ist erforderlich",
+        "messageMinLength": "Die Nachricht muss mindestens 10 Zeichen lang sein"
+      }
+    },
+    "info": {
+      "_comment": "✏️ ANPASSEN: Diese Beschreibung aktualisieren, um Ihrer Persönlichkeit zu entsprechen",
+      "title": "Vernetzen",
+      "description": "Ich bin immer interessiert daran, von neuen Möglichkeiten und spannenden Projekten zu hören. Egal, ob Sie ein Unternehmen sind, das einstellen möchte, oder ein Entwicklerkollege, der zusammenarbeiten möchte, zögern Sie nicht, sich zu melden!",
+      "email": "E-Mail",
+      "phone": "Telefon",
+      "location": "Standort"
+    }
+  },
+
+  "footer": {
+    "_comment": "🔒 Generischer Footer-Text - beibehalten",
+    "navigation": "Navigation",
+    "connect": "Vernetzen",
+    "copyright": "© {{year}} {{name}}. Alle Rechte vorbehalten.",
+    "builtWith": "Mit ❤️ erstellt mit React, TypeScript und TailwindCSS",
+    "description": "Vielen Dank für den Besuch meines Portfolios. Ich bin immer begeistert davon, an neuen Projekten zu arbeiten und mit großartigen Menschen zusammenzuarbeiten. Lassen Sie uns gemeinsam etwas Großartiges schaffen!"
+  },
+
+  "resume": {
+    "_comment": "🔒 Generischer Lebenslauf-Vorschau Text - beibehalten",
+    "preview": {
+      "title": "Lebenslauf-Vorschau",
+      "subtitle": "Beruflicher Lebenslauf",
+      "loading": "Lebenslauf wird geladen...",
+      "openExternal": "In Neuem Tab Öffnen",
+      "error": {
+        "title": "Lebenslauf Kann Nicht Geladen Werden",
+        "description": "Die Lebenslauf-Vorschau konnte nicht geladen werden. Sie können ihn trotzdem herunterladen oder in einem neuen Tab ansehen."
+      }
+    }
+  },
+
+  "theme": {
+    "_comment": "🔒 Generische Theme-Steuerelemente - beibehalten",
+    "toggle": "Theme umschalten",
+    "light": "Heller Modus",
+    "dark": "Dunkler Modus"
+  },
+
+  "accessibility": {
+    "_comment": "🔒 Generische Barrierefreiheits-Labels - beibehalten",
+    "toggleMenu": "Menü umschalten",
+    "closeMenu": "Menü schließen",
+    "scrollToTop": "Nach oben scrollen"
+  }
+} 

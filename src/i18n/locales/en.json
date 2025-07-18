@@ -150,6 +150,12 @@
     "viewAll": "View All Repositories on GitHub",
     "noRepos": "No Public Repositories",
     "noReposDescription": "No public repositories found or they don't meet the criteria.",
+    "unableToLoad": "Unable to Load Repositories",
+    "tryAgain": "Try Again",
+    "refresh": "Refresh",
+    "retryAttempt": "Retry attempt",
+    "loadingTimeout": "The repositories are taking longer than expected to load. Please try again.",
+    "initializing": "Initializing...",
     "stats": {
       "stars": "Stars",
       "forks": "Forks"
@@ -201,12 +207,26 @@
     "navigation": "Navigation",
     "connect": "Connect",
     "copyright": "© {{year}} {{name}}. All rights reserved.",
-    "builtWith": "Built with ❤️ using React, TypeScript & TailwindCSS",
+    "builtWith": "Made with ❤️ using React, TypeScript and TailwindCSS",
     "description": "Thank you for visiting my portfolio. I'm always excited to work on new projects and collaborate with amazing people. Let's build something great together!"
   },
 
+  "resume": {
+    "_comment": "🔒 Generic resume preview text - keep as-is",
+    "preview": {
+      "title": "Resume Preview",
+      "subtitle": "Professional Resume",
+      "loading": "Loading resume...",
+      "openExternal": "Open in New Tab",
+      "error": {
+        "title": "Unable to Load Resume",
+        "description": "The resume preview could not be loaded. You can still download it or view it in a new tab."
+      }
+    }
+  },
+
   "theme": {
-    "_comment": "🔒 Generic theme controls - keep as-is", 
+    "_comment": "🔒 Generic theme controls - keep as-is",
     "toggle": "Toggle theme",
     "light": "Light mode",
     "dark": "Dark mode"
@@ -215,7 +235,7 @@
   "accessibility": {
     "_comment": "🔒 Generic accessibility labels - keep as-is",
     "toggleMenu": "Toggle menu",
-    "closeMenu": "Close menu", 
+    "closeMenu": "Close menu",
     "scrollToTop": "Scroll to top"
   },
 

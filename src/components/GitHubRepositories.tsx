@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useMemo, useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { Github, Star, GitFork, ExternalLink, Eye } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
@@ -20,6 +20,12 @@ const GitHubRepositories = ({
 }: GitHubRepositoriesProps) => {
   const { t } = useTranslation()
   const { ref, controls } = useScrollAnimation({ threshold: 0.2 })
+  const [showFallback, setShowFallback] = useState(false)
+
+  // Early return check
+  if (!githubUrl) {
+    return null
+  }
 
   // Properly memoize arrays to prevent re-renders
   const stableFeaturedRepos = useMemo(() => featuredRepos, [JSON.stringify(featuredRepos)])
@@ -34,7 +40,23 @@ const GitHubRepositories = ({
     enableGitHubIntegration: !!githubUrl,
   }), [githubUrl, maxRepos, stableFeaturedRepos, stableManualProjects])
 
-  const { projects: githubProjects, isLoading, error } = useGitHubProjects(githubOptions)
+  const { projects: githubProjects, isLoading, error, retry, retryCount, hasAttempted } = useGitHubProjects(githubOptions)
+
+  // Fallback timeout to prevent infinite loading
+  useEffect(() => {
+    if (isLoading) {
+      const timeout = setTimeout(() => {
+        setShowFallback(true)
+      }, 45000) // 45 seconds - longer than the hook's 30s timeout
+
+      return () => {
+        clearTimeout(timeout)
+        setShowFallback(false)
+      }
+    } else {
+      setShowFallback(false)
+    }
+  }, [isLoading])
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -78,10 +100,13 @@ const GitHubRepositories = ({
 
   const githubUsername = githubUrl ? getGitHubUsername(githubUrl) : null
 
-  // Don't render if no GitHub URL provided
-  if (!githubUrl) {
-    return null
-  }
+  // Determine what content to show
+  const shouldShowLoading = isLoading && !showFallback
+  const shouldShowFallback = showFallback
+  const shouldShowError = error && !isLoading && hasAttempted && !showFallback
+  const shouldShowRepos = !isLoading && !error && !showFallback && githubProjects.length > 0
+  const shouldShowEmpty = !isLoading && !error && !showFallback && githubProjects.length === 0 && hasAttempted
+  const shouldShowInitializing = !isLoading && !error && !showFallback && githubProjects.length === 0 && !hasAttempted
 
   return (
     <section id="github-repositories" className={`py-20 bg-gray-50 dark:bg-gray-800/50 ${className}`} ref={ref}>
@@ -91,6 +116,7 @@ const GitHubRepositories = ({
           initial="hidden"
           animate={controls}
         >
+          {/* Header - Always show */}
           <motion.div className="text-center mb-16" variants={itemVariants}>
             <div className="flex items-center justify-center gap-3 mb-4">
               <Github className="w-8 h-8 text-primary-600" />
@@ -102,45 +128,109 @@ const GitHubRepositories = ({
             </p>
           </motion.div>
 
-          {/* Loading State */}
-          {isLoading && (
+          {/* Content - Always render one of these states */}
+          {shouldShowLoading && (
             <motion.div 
-              className="text-center py-12"
+              className="text-center py-16"
               variants={itemVariants}
             >
-              <div className="inline-flex items-center gap-3 text-gray-600 dark:text-gray-400">
-                <div className="w-6 h-6 border-2 border-primary-600 border-t-transparent rounded-full animate-spin"></div>
-                {t('github.loading')}
+              <div className="inline-flex flex-col items-center gap-4 text-gray-600 dark:text-gray-400">
+                <div className="w-8 h-8 border-3 border-primary-600 border-t-transparent rounded-full animate-spin"></div>
+                <div className="text-center">
+                  <p className="text-lg font-medium">{t('github.loading')}</p>
+                  {retryCount > 0 && (
+                    <p className="text-sm text-gray-500 dark:text-gray-500 mt-1">
+                      Retry attempt {retryCount}/2...
+                    </p>
+                  )}
+                </div>
               </div>
             </motion.div>
           )}
 
-          {/* Error State */}
-          {error && !isLoading && (
+          {shouldShowFallback && (
             <motion.div 
               className="text-center py-12"
               variants={itemVariants}
             >
-              <div className="text-yellow-600 dark:text-yellow-400 mb-4">
-                <Github className="w-12 h-12 mx-auto mb-2" />
-                <p>{error}</p>
+              <div className="max-w-md mx-auto">
+                <Github className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">
+                  {t('github.unableToLoad')}
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400 mb-6">
+                  {t('github.loadingTimeout')}
+                </p>
+                
+                <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                  <button
+                    onClick={retry}
+                    className="btn-primary px-6 py-2 inline-flex items-center gap-2"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                    </svg>
+                    {t('github.tryAgain')}
+                  </button>
+                  
+                  {githubUsername && (
+                    <a
+                      href={`https://github.com/${githubUsername}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-secondary px-6 py-2 inline-flex items-center gap-2"
+                    >
+                      <Github className="w-4 h-4" />
+                      {t('github.viewProfile')}
+                    </a>
+                  )}
+                </div>
               </div>
-              {githubUsername && (
-                <a
-                  href={`https://github.com/${githubUsername}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-primary inline-flex items-center gap-2"
-                >
-                  <Github className="w-5 h-5" />
-                  {t('github.viewProfile')}
-                </a>
-              )}
             </motion.div>
           )}
 
-          {/* Repositories Grid */}
-          {!isLoading && !error && githubProjects.length > 0 && (
+          {shouldShowError && (
+            <motion.div 
+              className="text-center py-12"
+              variants={itemVariants}
+            >
+              <div className="max-w-md mx-auto">
+                <Github className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">
+                  {t('github.unableToLoad')}
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400 mb-6">
+                  {error}
+                </p>
+                
+                <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                  <button
+                    onClick={retry}
+                    className="btn-primary px-6 py-2 inline-flex items-center gap-2"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                    </svg>
+                    {t('github.tryAgain')}
+                  </button>
+                  
+                  {githubUsername && (
+                    <a
+                      href={`https://github.com/${githubUsername}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-secondary px-6 py-2 inline-flex items-center gap-2"
+                    >
+                      <Github className="w-4 h-4" />
+                      {t('github.viewProfile')}
+                    </a>
+                  )}
+                </div>
+              </div>
+            </motion.div>
+          )}
+
+          {shouldShowRepos && (
             <>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {githubProjects.slice(0, maxRepos).map((repo) => (
@@ -240,8 +330,7 @@ const GitHubRepositories = ({
             </>
           )}
 
-          {/* Empty State */}
-          {!isLoading && !error && githubProjects.length === 0 && githubUsername && (
+          {shouldShowEmpty && (
             <motion.div 
               className="text-center py-12"
               variants={itemVariants}
@@ -253,15 +342,38 @@ const GitHubRepositories = ({
               <p className="text-gray-600 dark:text-gray-400 mb-6">
                 {t('github.noReposDescription')}
               </p>
-              <a
-                href={`https://github.com/${githubUsername}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary inline-flex items-center gap-2"
-              >
-                <Github className="w-5 h-5" />
-                {t('github.viewProfile')}
-              </a>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                <button
+                  onClick={retry}
+                  className="btn-secondary px-6 py-2 inline-flex items-center gap-2"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                  </svg>
+                  {t('github.refresh')}
+                </button>
+                <a
+                  href={`https://github.com/${githubUsername}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary inline-flex items-center gap-2"
+                >
+                  <Github className="w-4 h-4" />
+                  {t('github.viewProfile')}
+                </a>
+              </div>
+            </motion.div>
+          )}
+
+          {shouldShowInitializing && (
+            <motion.div 
+              className="text-center py-12"
+              variants={itemVariants}
+            >
+              <div className="inline-flex flex-col items-center gap-4 text-gray-600 dark:text-gray-400">
+                <div className="w-8 h-8 border-3 border-primary-600 border-t-transparent rounded-full animate-spin"></div>
+                <p className="text-lg font-medium">{t('github.initializing')}</p>
+              </div>
             </motion.div>
           )}
         </motion.div>

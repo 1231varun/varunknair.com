@@ -65,7 +65,13 @@ class GitHubService {
       )
 
       if (!response.ok) {
-        throw new Error(`GitHub API error: ${response.status} ${response.statusText}`)
+        if (response.status === 403) {
+          throw new Error(`GitHub API rate limit exceeded. Please try again later.`)
+        } else if (response.status === 404) {
+          throw new Error(`GitHub user '${username}' not found.`)
+        } else {
+          throw new Error(`GitHub API error: ${response.status} ${response.statusText}`)
+        }
       }
 
       return response.json()
@@ -141,6 +147,11 @@ class GitHubService {
       // Take top repositories
       const topRepos = sortedRepos.slice(0, maxProjects)
 
+      // If no repositories match the criteria, return empty array (not an error)
+      if (topRepos.length === 0) {
+        return []
+      }
+
       // Convert to Project format with language information
       const projects: Project[] = await Promise.all(
         topRepos.map(async (repo, index) => {
@@ -187,7 +198,8 @@ class GitHubService {
       return projects
     } catch (error) {
       console.error('Error fetching GitHub repositories:', error)
-      return []
+      // Re-throw the error instead of returning empty array so the UI can show proper error message
+      throw error
     }
   }
 
@@ -306,6 +318,8 @@ export const getProjectsWithGitHub = async (
     return uniqueProjects
   } catch (error) {
     console.error('Error fetching GitHub projects:', error)
-    return manualProjects
+    // Re-throw the error so the UI can show proper error messages
+    // instead of silently falling back to manual projects
+    throw error
   }
 } 

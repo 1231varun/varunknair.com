@@ -18,12 +18,14 @@ const getCurrentLanguage = (): string => {
 const bioData: Record<string, string> = {
   en: 'Results-driven Senior Software Engineer with close to 9 years of experience building and optimizing scalable, high-performance applications using JavaScript, React, Node.js, Python and cloud-native technologies. Proven expertise in leading end-to-end projects, mentoring teams, and improving development processes to deliver impactful solutions.',
   es: 'Ingeniero de Software Senior orientado a resultados con cerca de 9 años de experiencia construyendo y optimizando aplicaciones escalables y de alto rendimiento usando JavaScript, React, Node.js, Python y tecnologías cloud-nativas. Experiencia comprobada liderando proyectos end-to-end, mentoreando equipos, y mejorando procesos de desarrollo para entregar soluciones impactantes.',
+  de: 'Ergebnisorientierter Senior Software Engineer mit fast 9 Jahren Erfahrung in der Entwicklung und Optimierung skalierbarer, hochperformanter Anwendungen mit JavaScript, React, Node.js, Python und cloud-nativen Technologien. Nachgewiesene Expertise in der Leitung von End-to-End-Projekten, Team-Mentoring und der Verbesserung von Entwicklungsprozessen zur Lieferung wirkungsvoller Lösungen.',
 }
 
 // Tagline data that changes with language  
 const taglineData: Record<string, string> = {
   en: 'Senior Software Engineer | 9+ Years Building Scalable Applications',
   es: 'Ingeniero de Software Senior | 9+ Años Construyendo Aplicaciones Escalables',
+  de: 'Senior Software Engineer | 9+ Jahre Entwicklung Skalierbarer Anwendungen',
 }
 
 // Get language-aware bio and tagline
@@ -234,6 +236,84 @@ const experienceData: Record<string, Experience[]> = {
       current: false,
     }
   ],
+  de: [
+    {
+      id: 'proofpoint',
+      company: 'Proofpoint (Durch Normalyze-Übernahme)',
+      position: 'Senior Software Engineer',
+      duration: '11/2024 - Gegenwärtig',
+      location: 'Bangalore, Indien',
+      description: [
+        'Workflow-Effizienz durch Neudesign und Übergang zu Temporal von Orkes Conductor',
+        'Entwicklung eines einheitlichen, wiederverwendbaren Workflows aus bestehenden Prozessen',
+        'Erreichte 50%ige Verbesserung der Team-Effizienz durch Reduzierung der Integrationstermine von 8 Wochen auf 4 Wochen',
+      ],
+      technologies: ['Temporal', 'Orkes Conductor', 'Node.js', 'Python', 'Microservices', 'AWS', 'Azure'],
+      current: true,
+    },
+    {
+      id: 'normalyze',
+      company: 'Normalyze.ai (Durch Proofpoint erworben)',
+      position: 'Senior Full Stack Engineer',
+      duration: '10/2023 - 11/2024',
+      location: 'Bengaluru, Indien',
+      description: [
+        'Entwurf eines skalierbaren Ad-hoc-Job-Workflow-Frameworks für die Integration unterschiedlicher Datenflüsse',
+        'Aufbau hochskalierbarer Microservices und AWS Lambda-Funktionen für die Leistung von DSPM-Tools',
+        'Leitung des SaaS-Onboarding-Flusses und Backend-APIs',
+        'Entwicklung der DataScan-Übersichtsseite mit Snowflake DBT für die Datenaggregation',
+        'Zweite Beschäftigung für das SaaS-Team, das zum Kern der DSPM-Plattformarchitektur beiträgt',
+      ],
+      technologies: ['React', 'Node.js', 'AWS Lambda', 'Snowflake', 'Python', 'Docker', 'PostgreSQL', 'Sequelize', 'Netflix Conductor'],
+      current: false,
+    },
+    {
+      id: 'cisco',
+      company: 'Cisco Systems India Private Limited',
+      position: 'Senior Software Engineer',
+      duration: '09/2019 - 10/2023',
+      location: 'Bangalore, Karnataka',
+      description: [
+        'Leitung der UI-Entwicklung für die Cisco Security Business Group (Umbrella/SSE) Endpunktsicherheit',
+        'Entwurf wiederverwendbarer React-Komponenten, die die Entwicklungsgeschwindigkeit um 40% erhöhen',
+        'Aufbau von Micro-Frontends, die mit dem Cisco Secure Service Edge Dashboard integriert sind',
+        'Leitung des Webex Instant Telehealth-Connectors für Epic EHR mit WebRTC',
+        'Gewonnen CTO-Innovationspreis für das Integration-Framework (Verringerung der Entwicklungszeit von Sprints auf 20 Minuten)',
+      ],
+      technologies: ['React', 'Redux', 'Node.js', 'WebRTC', 'Microservices', 'TypeScript', 'Python', 'Angular', 'Express.js'],
+      current: false,
+    },
+    {
+      id: 'hertz',
+      company: '42Hertz (Durch Cisco erworben)',
+      position: 'Softwareentwickler',
+      duration: '12/2017 - 08/2019',
+      location: 'Bengaluru, Karnataka',
+      description: [
+        'Entwurf von Anwendungen für 42Hertz-Kunden und Stakeholder-Kommunikation',
+        'Verbesserung von Rapid Sign Now mit Zahlungsgateway-Integration und automatischer Abrechnung',
+        'Aufbau von MVPs und Demonstration von Konzepten von Kunden',
+        'Beitrag zum Cisco Webex Admin-Steuerungsportal (Control Hub)',
+      ],
+      technologies: ['React', 'Redux', 'Node.js', 'Express.js', 'Python', 'Django', 'MongoDB', 'MySQL', 'Ruby on Rails'],
+      current: false,
+    },
+    {
+      id: 'silver-oak',
+      company: 'Silver Oak Health',
+      position: 'Produktentwickler',
+      duration: '06/2016 - 12/2017',
+      location: 'Bengaluru, Karnataka',
+      description: [
+        'Aufbau einer SaaS-Plattform für mindfulness- und EAP-Produkte für Unternehmen',
+        'Entwicklung von Webanwendungen UX/UI und Backend-RESTful-APIs',
+        'Erstellung einer EAP-Plattform vom Ideations- bis zum Produktionsprozess',
+        'Entwicklung und Bereitstellung der iOS/Android-Tranquil-Mindfulness-App',
+      ],
+      technologies: ['HTML5', 'CSS3', 'JavaScript', 'jQuery', 'Python', 'Android', 'iOS Swift', 'PHP'],
+      current: false,
+    }
+  ],
 }
 
 // Multi-language projects data
@@ -355,6 +435,68 @@ const projectsData: Record<string, Project[]> = {
       description: 'Construí plataforma integral de Programa de Asistencia al Empleado y desarrollé app Tranquil Mindfulness para iOS/Android desde ideación hasta producción.',
       longDescription: 'Desarrollé un conjunto completo de productos de mindfulness y Programa de Asistencia al Empleado para Silver Oak Health, proporcionando una plataforma SaaS para empresas. Construí toda la aplicación web UX/UI, APIs RESTful backend, y la plataforma EAP desde concepto hasta producción. Creé y desplegué la app móvil Tranquil Mindfulness para plataformas iOS y Android, con meditaciones guiadas, programas de control de estrés y evaluaciones de bienestar.',
       technologies: ['React', 'Python', 'Django', 'iOS Swift', 'Android', 'APIs RESTful', 'Plataforma SaaS', 'Desarrollo Móvil'],
+      imageUrl: '/projects/silver-oak-tranquil.jpg',
+      projectUrl: 'https://web.silveroakhealth.com/app-and-portal',
+      githubUrl: '',
+      featured: false,
+      category: 'web',
+    }
+  ],
+  de: [
+    {
+      id: 'proofpoint-dsmp',
+      title: 'Proofpoint Data Security Posture Management Platform',
+      description: 'Entwickelte umfassende DSPM-Plattform mit skalierbaren Microservices und AWS Lambda-Funktionen, verbesserte Teameffizienz um 50% durch Workflow-Optimierung.',
+      longDescription: 'Als zweite Einstellung für das SaaS-Team bei Normalyze (jetzt Proofpoint) konzipierte und entwickelte ich eine umfassende Data Security Posture Management (DSMP) Plattform. Erstellte skalierbare Ad-hoc-Job-Workflow-Framework, implementierte hochskalierbare Microservices mit AWS Lambda-Funktionen und schuf Datenaggregations-Pipelines mit Snowflake DBT. Entwarf interaktive Dashboards und wiederverwendbare React-Komponenten für Datenvisualisierung.',
+      technologies: ['React', 'Node.js', 'AWS Lambda', 'Snowflake', 'Python', 'Docker', 'PostgreSQL', 'Microservices', 'DBT', 'Sequelize'],
+      imageUrl: '/projects/proofpoint-dspm.jpg',
+      projectUrl: 'https://www.proofpoint.com/us/normalyze-is-now-proofpoint',
+      githubUrl: '',
+      featured: true,
+      category: 'web',
+    },
+    {
+      id: 'webex-telehealth-epic',
+      title: 'Webex Instant Telehealth Connector für Epic EHR',
+      description: 'Leitete UI-Entwicklung einer WebRTC-basierten Telehealth-Lösung, die Webex-Videoanrufe direkt in das Epic Electronic Health Records System integriert.',
+      longDescription: 'Konzipierte und leitete die komplette UI-Entwicklung einer bahnbrechenden Telehealth-Lösung, die nahtlos Webex-Videoanruf-Funktionen in das Epic EHR-System integriert. Entwickelte die gesamte Web-Plattform mit WebRTC-Technologie, ermöglichte Gesundheitsdienstleistern sichere, HIPAA-konforme Videokonsultationen ohne ihr EHR-Workflow zu verlassen. Trug Kernfunktionalitäten zum Webex JS SDK bei und kümmerte sich um Authentifizierung, Sicherheit und Token-Brokering.',
+      technologies: ['WebRTC', 'Webex SDK', 'React', 'Node.js', 'Epic Integration', 'HIPAA Compliance', 'TypeScript', 'Express.js'],
+      imageUrl: '/projects/webex-epic.jpg',
+      projectUrl: 'https://apphub.webex.com/applications/webex-telehealth-connector-for-epic',
+      githubUrl: 'https://github.com/webex/webex-js-sdk',
+      featured: true,
+      category: 'web',
+    },
+    {
+      id: 'cisco-sse-security',
+      title: 'Cisco Security Service Edge (SSE) Plattform',
+      description: 'Leitete Entwicklung von Endpoint Security Posture Konfigurationen für Cisco SSE, entwickelte moderne Micro-Frontends mit 40% verbesserter Entwicklungsgeschwindigkeit.',
+      longDescription: 'Leitete die Frontend-Entwicklung von Ciscos Security Service Edge Plattform mit Fokus auf Endpoint Security Posture Management Konfigurationen. Entwarf und implementierte eine umfassende Komponentenbibliothek mit erweiterbaren und wiederverwendbaren React-Komponenten, verbesserte signifikant die Entwicklungseffizienz über mehrere Teams hinweg. Entwickelte moderne Micro-Frontends, die nahtlos mit dem Cisco Secure Service Edge Dashboard integrieren.',
+      technologies: ['React', 'Redux', 'TypeScript', 'Microservices', 'Cisco APIs', 'Komponentenbibliothek', 'Security Dashboard'],
+      imageUrl: '/projects/cisco-sse.jpg',
+      projectUrl: 'https://www.cisco.com/site/in/en/solutions/security-service-edge-sse/index.html',
+      githubUrl: '',
+      featured: true,
+      category: 'web',
+    },
+    {
+      id: 'webex-integrations-hub',
+      title: 'Webex Integrationen & App Hub',
+      description: 'Entwickelte mehrere Webex-Integrationen einschließlich Bitmoji (Snapchat) und Eloqua-Konnektoren, plus Entwicklungsframework das Build-Zeit von Sprints auf 20 Minuten reduzierte.',
+      longDescription: 'Leitete Entwicklung verschiedener Webex-Integrationen und trug zum App Hub Ökosystem bei. Entwickelte direkte Integration von Bitmojis von Snapchat in native Webex-Apps, entwickelte Webex App für Oracle Eloqua Marketing Automation und schuf ein Entwicklungsframework, das den Innovation Day CTO Award gewann. Das Framework reduzierte Integrations-Entwicklungszeit von 1-2 Sprints auf nur 20 Minuten.',
+      technologies: ['React', 'Node.js', 'Webex SDK', 'OAuth', 'REST APIs', 'Integrations-Framework', 'JavaScript ES6'],
+      imageUrl: '/projects/webex-integrations.jpg',
+      projectUrl: 'https://apphub.webex.com/integrations',
+      githubUrl: '',
+      featured: true,
+      category: 'web',
+    },
+    {
+      id: 'silver-oak-tranquil',
+      title: 'Silver Oak Health EAP & Tranquil Mindfulness Plattform',
+      description: 'Entwickelte umfassende Employee Assistance Program Plattform und entwickelte iOS/Android Tranquil Mindfulness App von der Ideenfindung bis zur Produktion.',
+      longDescription: 'Entwickelte eine komplette Suite von Mindfulness- und Employee Assistance Program-Produkten für Silver Oak Health, stellte eine SaaS-Plattform für Unternehmen bereit. Entwickelte die gesamte Webanwendung UX/UI, Backend RESTful APIs und die EAP-Plattform vom Konzept bis zur Produktion. Erstellte und deployierte die Tranquil Mindfulness Mobile App für iOS und Android Plattformen mit geführten Meditationen, Stresskontrollprogrammen und Wohlbefindens-Bewertungen.',
+      technologies: ['React', 'Python', 'Django', 'iOS Swift', 'Android', 'RESTful APIs', 'SaaS Plattform', 'Mobile Entwicklung'],
       imageUrl: '/projects/silver-oak-tranquil.jpg',
       projectUrl: 'https://web.silveroakhealth.com/app-and-portal',
       githubUrl: '',
