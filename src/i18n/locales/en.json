@@ -44,6 +44,12 @@
       "backend": "Backend", 
       "database": "Database",
       "tools": "Tools & Others"
+    },
+    "stats": {
+      "technologies": "Technologies",
+      "categories": "Categories", 
+      "proficiency": "Avg. Proficiency",
+      "experience": "Years Experience"
     }
   },
 
@@ -103,6 +109,17 @@
     "viewProject": "View Project",
     "viewCode": "View Code",
     "liveDemo": "Live Demo",
+    "professional": "Professional",
+    "viewDetails": "View Details",
+    "view": "View",
+    "code": "Code",
+    "showLess": "Show Less",
+    "showMoreProjects": "Show More Projects",
+    "more": "more",
+    "technologiesUsed": "Technologies Used",
+    "category": "Category",
+    "sourceCode": "Source Code",
+    "close": "Close",
     "categories": {
       "all": "All",
       "web": "Web Apps",
@@ -121,6 +138,25 @@
         "description": "Built scalable microservices and AWS Lambda functions for Data Security Posture Management tools, improving team efficiency by 50%.",
         "longDescription": "Designed and implemented a comprehensive Data Security Posture Management (DSPM) platform that helps organizations discover, classify, and protect sensitive data across multi-cloud environments."
       }
+    }
+  },
+
+  "github": {
+    "_comment": "🔒 Generic GitHub section text - keep as-is",
+    "title": "GitHub Repositories", 
+    "subtitle": "A selection of my open-source projects and contributions",
+    "loading": "Loading repositories...",
+    "viewProfile": "View GitHub Profile",
+    "viewAll": "View All Repositories on GitHub",
+    "noRepos": "No Public Repositories",
+    "noReposDescription": "No public repositories found or they don't meet the criteria.",
+    "stats": {
+      "stars": "Stars",
+      "forks": "Forks"
+    },
+    "actions": {
+      "code": "Code",
+      "demo": "Demo"
     }
   },
 
@@ -162,8 +198,11 @@
 
   "footer": {
     "_comment": "🔒 Generic footer text - keep as-is",
+    "navigation": "Navigation",
+    "connect": "Connect",
     "copyright": "© {{year}} {{name}}. All rights reserved.",
-    "builtWith": "Built with ❤️ using React, TypeScript & TailwindCSS"
+    "builtWith": "Built with ❤️ using React, TypeScript & TailwindCSS",
+    "description": "Thank you for visiting my portfolio. I'm always excited to work on new projects and collaborate with amazing people. Let's build something great together!"
   },
 
   "theme": {

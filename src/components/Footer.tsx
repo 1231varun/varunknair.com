@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { Heart, ArrowUp } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { PersonalInfo, SocialLinks } from '@/types'
 
 interface FooterProps {
@@ -8,6 +9,7 @@ interface FooterProps {
 }
 
 const Footer = ({ personalInfo, socialLinks }: FooterProps) => {
+  const { t } = useTranslation()
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -15,17 +17,17 @@ const Footer = ({ personalInfo, socialLinks }: FooterProps) => {
 
   const footerSections = [
     {
-      title: 'Navigation',
+      title: t('footer.navigation'),
       links: [
-        { name: 'About', href: '#about' },
-        { name: 'Skills', href: '#skills' },
-        { name: 'Experience', href: '#experience' },
-        { name: 'Projects', href: '#projects' },
-        { name: 'Contact', href: '#contact' },
+        { name: t('navigation.about'), href: '#about' },
+        { name: t('navigation.skills'), href: '#skills' },
+        { name: t('navigation.experience'), href: '#experience' },
+        { name: t('navigation.projects'), href: '#projects' },
+        { name: t('navigation.contact'), href: '#contact' },
       ],
     },
     {
-      title: 'Connect',
+      title: t('footer.connect'),
       links: [
         { name: 'GitHub', href: socialLinks.github },
         { name: 'LinkedIn', href: socialLinks.linkedin },
@@ -67,8 +69,7 @@ const Footer = ({ personalInfo, socialLinks }: FooterProps) => {
                   {personalInfo.tagline}
                 </p>
                 <p className="text-gray-400 text-sm leading-relaxed">
-                  Thank you for visiting my portfolio. I'm always excited to work on new projects 
-                  and collaborate with amazing people. Let's build something great together!
+                  {t('footer.description')}
                 </p>
               </motion.div>
             </div>
@@ -110,9 +111,9 @@ const Footer = ({ personalInfo, socialLinks }: FooterProps) => {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <span>© {new Date().getFullYear()} {personalInfo.fullName}. Built with</span>
+                              <span>{t('footer.copyright', { year: new Date().getFullYear(), name: personalInfo.fullName })}</span>
               <Heart className="w-4 h-4 text-red-500 fill-current" />
-              <span>using React & TypeScript</span>
+              <span>{t('footer.builtWith')}</span>
             </motion.div>
 
             <motion.div
@@ -123,7 +124,7 @@ const Footer = ({ personalInfo, socialLinks }: FooterProps) => {
               viewport={{ once: true }}
             >
               <span className="text-gray-400 text-sm">
-                Made with modern web technologies
+                {t('footer.builtWith')}
               </span>
               
               <motion.button

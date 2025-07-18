@@ -89,19 +89,19 @@ const Contact = ({ personalInfo }: ContactProps) => {
   const contactInfo = [
     {
       icon: <Mail className="w-6 h-6" />,
-      title: 'Email',
+      title: t('contact.info.email'),
       value: personalInfo.email,
       href: `mailto:${personalInfo.email}`,
     },
     {
       icon: <Phone className="w-6 h-6" />,
-      title: 'Phone',
+      title: t('contact.info.phone'),
       value: personalInfo.phone,
       href: `tel:${personalInfo.phone}`,
     },
     {
       icon: <MapPin className="w-6 h-6" />,
-      title: 'Location',
+      title: t('contact.info.location'),
       value: personalInfo.location,
       href: null,
     },
@@ -116,7 +116,7 @@ const Contact = ({ personalInfo }: ContactProps) => {
           animate={controls}
         >
           <motion.div className="text-center mb-16" variants={itemVariants}>
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4">{t('contact.title')}</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-gray-900 dark:text-gray-100">{t('contact.title')}</h2>
             <div className="w-20 h-1 bg-primary-600 mx-auto rounded-full" />
             <p className="text-lg text-gray-600 dark:text-gray-300 mt-6 max-w-2xl mx-auto">
               {t('contact.subtitle')}
@@ -128,12 +128,10 @@ const Contact = ({ personalInfo }: ContactProps) => {
             <motion.div className="space-y-8" variants={itemVariants}>
               <div>
                 <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">
-                  Let's Connect
+                  {t('contact.info.title')}
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-8">
-                  I'm always interested in hearing about new opportunities and exciting projects. 
-                  Whether you're a company looking to hire, or you're a fellow developer wanting to collaborate, 
-                  don't hesitate to reach out!
+                  {t('contact.info.description')}
                 </p>
               </div>
 
@@ -185,7 +183,7 @@ const Contact = ({ personalInfo }: ContactProps) => {
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                      Name
+                      {t('contact.form.name')}
                     </label>
                     <input
                       type="text"
@@ -195,13 +193,13 @@ const Contact = ({ personalInfo }: ContactProps) => {
                       onChange={handleInputChange}
                       required
                       className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 transition-colors duration-200"
-                      placeholder="Your name"
+                      placeholder={t('contact.form.namePlaceholder')}
                     />
                   </div>
                   
                   <div>
                     <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                      Email
+                      {t('contact.form.email')}
                     </label>
                     <input
                       type="email"
@@ -211,14 +209,14 @@ const Contact = ({ personalInfo }: ContactProps) => {
                       onChange={handleInputChange}
                       required
                       className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 transition-colors duration-200"
-                      placeholder="your.email@example.com"
+                      placeholder={t('contact.form.emailPlaceholder')}
                     />
                   </div>
                 </div>
 
                 <div>
                   <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Subject
+                    {t('contact.form.subject')}
                   </label>
                   <input
                     type="text"
@@ -228,13 +226,13 @@ const Contact = ({ personalInfo }: ContactProps) => {
                     onChange={handleInputChange}
                     required
                     className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 transition-colors duration-200"
-                    placeholder="What's this about?"
+                    placeholder={t('contact.form.subjectPlaceholder')}
                   />
                 </div>
 
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Message
+                    {t('contact.form.message')}
                   </label>
                   <textarea
                     id="message"
@@ -244,7 +242,7 @@ const Contact = ({ personalInfo }: ContactProps) => {
                     required
                     rows={5}
                     className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 transition-colors duration-200 resize-none"
-                    placeholder="Tell me about your project or idea..."
+                    placeholder={t('contact.form.messagePlaceholder')}
                   />
                 </div>
 
@@ -258,12 +256,12 @@ const Contact = ({ personalInfo }: ContactProps) => {
                   {isSubmitting ? (
                     <>
                       <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                      Sending...
+                      {t('contact.form.sending')}
                     </>
                   ) : (
                     <>
                       <Send className="w-5 h-5" />
-                      Send Message
+                      {t('contact.form.send')}
                     </>
                   )}
                 </motion.button>
@@ -290,7 +288,7 @@ const Contact = ({ personalInfo }: ContactProps) => {
                     animate={{ opacity: 1, y: 0 }}
                     className="p-4 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 rounded-lg text-center"
                   >
-                    Thank you! Your message has been sent successfully.
+                    {t('contact.form.success')}
                   </motion.div>
                 )}
 
@@ -300,7 +298,7 @@ const Contact = ({ personalInfo }: ContactProps) => {
                     animate={{ opacity: 1, y: 0 }}
                     className="p-4 bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300 rounded-lg text-center"
                   >
-                    Sorry, there was an error sending your message. Please try again.
+                    {t('contact.form.error')}
                   </motion.div>
                 )}
               </form>

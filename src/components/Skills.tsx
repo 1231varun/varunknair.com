@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 import { useScrollAnimation } from '@/hooks/useScrollAnimation'
 import { Skill } from '@/types'
 import { personalInfo } from '@/config/personal'
@@ -9,13 +10,14 @@ interface SkillsProps {
 
 const Skills = ({ skills }: SkillsProps) => {
   const { ref, controls } = useScrollAnimation({ threshold: 0.3 })
+  const { t } = useTranslation()
 
   const categories = {
-    frontend: 'Frontend',
-    backend: 'Backend',
-    database: 'Database',
+    frontend: t('skills.categories.frontend'),
+    backend: t('skills.categories.backend'),
+    database: t('skills.categories.database'),
     devops: 'DevOps',
-    tools: 'Tools',
+    tools: t('skills.categories.tools'),
   }
 
   const containerVariants = {
@@ -73,10 +75,10 @@ const Skills = ({ skills }: SkillsProps) => {
           animate={controls}
         >
           <motion.div className="text-center mb-16" variants={itemVariants}>
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4">Skills & Technologies</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-gray-900 dark:text-gray-100">{t('skills.title')}</h2>
             <div className="w-20 h-1 bg-primary-600 mx-auto rounded-full" />
             <p className="text-lg text-gray-600 dark:text-gray-300 mt-6 max-w-2xl mx-auto">
-              Technologies and tools I use to build amazing digital experiences
+              {t('skills.subtitle')}
             </p>
           </motion.div>
 
@@ -145,26 +147,26 @@ const Skills = ({ skills }: SkillsProps) => {
           >
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               <div className="space-y-2">
-                <div className="text-3xl font-bold text-primary-600">{skills.length}+</div>
-                <div className="text-sm text-gray-600 dark:text-gray-400">Technologies</div>
+                <div className="text-3xl font-bold text-primary-600 dark:text-primary-400">{skills.length}+</div>
+                <div className="text-sm text-gray-600 dark:text-gray-400">{t('skills.stats.technologies')}</div>
               </div>
               <div className="space-y-2">
-                <div className="text-3xl font-bold text-primary-600">
+                <div className="text-3xl font-bold text-primary-600 dark:text-primary-400">
                   {Object.keys(categories).length}
                 </div>
-                <div className="text-sm text-gray-600 dark:text-gray-400">Categories</div>
+                <div className="text-sm text-gray-600 dark:text-gray-400">{t('skills.stats.categories')}</div>
               </div>
               <div className="space-y-2">
-                <div className="text-3xl font-bold text-primary-600">
+                <div className="text-3xl font-bold text-primary-600 dark:text-primary-400">
                   {Math.round(skills.reduce((acc, skill) => acc + skill.level, 0) / skills.length)}%
                 </div>
-                <div className="text-sm text-gray-600 dark:text-gray-400">Avg. Proficiency</div>
+                <div className="text-sm text-gray-600 dark:text-gray-400">{t('skills.stats.proficiency')}</div>
               </div>
               <div className="space-y-2">
-                <div className="text-3xl font-bold text-primary-600">
+                <div className="text-3xl font-bold text-primary-600 dark:text-primary-400">
                   {personalInfo.yearsOfExperience ? `${personalInfo.yearsOfExperience}+` : '5+'}
                 </div>
-                <div className="text-sm text-gray-600 dark:text-gray-400">Years Experience</div>
+                <div className="text-sm text-gray-600 dark:text-gray-400">{t('skills.stats.experience')}</div>
               </div>
             </div>
           </motion.div>

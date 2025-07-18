@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ExternalLink, Github, ChevronDown, ChevronUp, Briefcase } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { Project } from '@/types'
 import { useScrollAnimation } from '@/hooks/useScrollAnimation'
 
@@ -11,6 +12,7 @@ interface ProfessionalProjectsProps {
 
 const ProfessionalProjects = ({ projects, initialShowCount = 3 }: ProfessionalProjectsProps) => {
   const { ref, controls } = useScrollAnimation({ threshold: 0.2 })
+  const { t } = useTranslation()
   const [showAll, setShowAll] = useState(false)
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
 
@@ -70,14 +72,14 @@ const ProfessionalProjects = ({ projects, initialShowCount = 3 }: ProfessionalPr
           animate={controls}
         >
           <motion.div className="text-center mb-16" variants={itemVariants}>
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <Briefcase className="w-8 h-8 text-primary-600" />
-              <h2 className="text-3xl sm:text-4xl font-bold">Professional Projects</h2>
-            </div>
+                          <div className="flex items-center justify-center gap-3 mb-4">
+                <Briefcase className="w-8 h-8 text-primary-600" />
+                <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100">{t('projects.title')}</h2>
+              </div>
             <div className="w-20 h-1 bg-primary-600 mx-auto rounded-full" />
-            <p className="text-lg text-gray-600 dark:text-gray-300 mt-6 max-w-2xl mx-auto">
-              Key projects from my professional experience at leading technology companies
-            </p>
+                          <p className="text-lg text-gray-600 dark:text-gray-300 mt-6 max-w-2xl mx-auto">
+                {t('projects.subtitle')}
+              </p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -102,13 +104,13 @@ const ProfessionalProjects = ({ projects, initialShowCount = 3 }: ProfessionalPr
                     {/* Company badge */}
                     <div className="absolute top-4 left-4">
                       <span className="bg-white/90 dark:bg-gray-900/90 px-2 py-1 rounded text-xs font-medium text-gray-700 dark:text-gray-300">
-                        Professional
+                        {t('projects.professional')}
                       </span>
                     </div>
 
                     {/* Hover overlay */}
                     <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                      <span className="text-white font-medium">View Details</span>
+                      <span className="text-white font-medium">{t('projects.viewDetails')}</span>
                     </div>
                   </div>
 
@@ -150,7 +152,7 @@ const ProfessionalProjects = ({ projects, initialShowCount = 3 }: ProfessionalPr
                           onClick={(e) => e.stopPropagation()}
                         >
                           <ExternalLink className="w-4 h-4 inline mr-1" />
-                          View
+                          {t('projects.view')}
                         </a>
                       )}
                       
@@ -163,7 +165,7 @@ const ProfessionalProjects = ({ projects, initialShowCount = 3 }: ProfessionalPr
                           onClick={(e) => e.stopPropagation()}
                         >
                           <Github className="w-4 h-4 inline mr-1" />
-                          Code
+                          {t('projects.code')}
                         </a>
                       )}
                     </div>
@@ -187,12 +189,12 @@ const ProfessionalProjects = ({ projects, initialShowCount = 3 }: ProfessionalPr
                 {showAll ? (
                   <>
                     <ChevronUp className="w-5 h-5" />
-                    Show Less
+                    {t('projects.showLess')}
                   </>
                 ) : (
                   <>
                     <ChevronDown className="w-5 h-5" />
-                    Show More Projects ({sortedProjects.length - initialShowCount} more)
+                    {t('projects.showMoreProjects')} ({sortedProjects.length - initialShowCount} {t('projects.more')})
                   </>
                 )}
               </motion.button>
@@ -230,7 +232,7 @@ const ProfessionalProjects = ({ projects, initialShowCount = 3 }: ProfessionalPr
                 <div className="grid md:grid-cols-2 gap-6 mb-6">
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-3">
-                      Technologies Used
+                      {t('projects.technologiesUsed')}
                     </h4>
                     <div className="flex flex-wrap gap-2">
                       {selectedProject.technologies.map((tech) => (
@@ -246,7 +248,7 @@ const ProfessionalProjects = ({ projects, initialShowCount = 3 }: ProfessionalPr
 
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-3">
-                      Category
+                      {t('projects.category')}
                     </h4>
                     <span className="inline-block px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-sm font-medium capitalize">
                       {selectedProject.category}
@@ -263,7 +265,7 @@ const ProfessionalProjects = ({ projects, initialShowCount = 3 }: ProfessionalPr
                       className="btn-primary flex items-center gap-2"
                     >
                       <ExternalLink className="w-5 h-5" />
-                      View Project
+                      {t('projects.viewProject')}
                     </a>
                   )}
                   
@@ -275,7 +277,7 @@ const ProfessionalProjects = ({ projects, initialShowCount = 3 }: ProfessionalPr
                       className="btn-secondary flex items-center gap-2"
                     >
                       <Github className="w-5 h-5" />
-                      Source Code
+                      {t('projects.sourceCode')}
                     </a>
                   )}
 
@@ -283,7 +285,7 @@ const ProfessionalProjects = ({ projects, initialShowCount = 3 }: ProfessionalPr
                     onClick={() => setSelectedProject(null)}
                     className="btn-secondary"
                   >
-                    Close
+                    {t('projects.close')}
                   </button>
                 </div>
               </div>

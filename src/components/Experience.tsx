@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { Calendar, MapPin, ExternalLink } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import type { Experience as ExperienceType } from '@/types'
 import { useScrollAnimation } from '@/hooks/useScrollAnimation'
 
@@ -9,6 +10,7 @@ interface ExperienceProps {
 
 const Experience = ({ experience }: ExperienceProps) => {
   const { ref, controls } = useScrollAnimation({ threshold: 0.2 })
+  const { t } = useTranslation()
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -41,10 +43,10 @@ const Experience = ({ experience }: ExperienceProps) => {
           animate={controls}
         >
           <motion.div className="text-center mb-16" variants={itemVariants}>
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4">Experience</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-gray-900 dark:text-gray-100">{t('experience.title')}</h2>
             <div className="w-20 h-1 bg-primary-600 mx-auto rounded-full" />
             <p className="text-lg text-gray-600 dark:text-gray-300 mt-6 max-w-2xl mx-auto">
-              My professional journey and the impact I've made
+              {t('experience.subtitle')}
             </p>
           </motion.div>
 
@@ -82,7 +84,7 @@ const Experience = ({ experience }: ExperienceProps) => {
                         </div>
                         {job.current && (
                           <span className="bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-400 px-3 py-1 rounded-full text-sm font-medium">
-                            Current
+                            {t('experience.current')}
                           </span>
                         )}
                       </div>
@@ -112,7 +114,7 @@ const Experience = ({ experience }: ExperienceProps) => {
                       {/* Technologies */}
                       <div>
                         <h4 className="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-3">
-                          Technologies Used
+                          {t('experience.technologies')}
                         </h4>
                         <div className="flex flex-wrap gap-2">
                           {job.technologies.map((tech) => (

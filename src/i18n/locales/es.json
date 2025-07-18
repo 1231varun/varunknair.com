@@ -35,6 +35,24 @@
     "technologiesMastered": "Tecnologías Dominadas"
   },
 
+  "skills": {
+    "_comment": "🔒 Texto UI de sección habilidades genérico - mantener como está",
+    "title": "Habilidades y Tecnologías",
+    "subtitle": "Tecnologías con las que trabajo para crear experiencias digitales increíbles",
+    "categories": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "database": "Base de Datos",
+      "tools": "Herramientas y Otros"
+    },
+    "stats": {
+      "technologies": "Tecnologías",
+      "categories": "Categorías", 
+      "proficiency": "Competencia Promedio",
+      "experience": "Años de Experiencia"
+    }
+  },
+
   "experience": {
     "_comment": "🔒 Texto UI de sección experiencia genérico - mantener como está",
     "title": "Experiencia Profesional",
@@ -64,11 +82,41 @@
     "viewProject": "Ver Proyecto",
     "viewCode": "Ver Código",
     "liveDemo": "Demo en Vivo",
+    "professional": "Profesional",
+    "viewDetails": "Ver Detalles",
+    "view": "Ver",
+    "code": "Código",
+    "showLess": "Mostrar Menos",
+    "showMoreProjects": "Mostrar Más Proyectos",
+    "more": "más",
+    "technologiesUsed": "Tecnologías Utilizadas",
+    "category": "Categoría",
+    "sourceCode": "Código Fuente",
+    "close": "Cerrar",
     "categories": {
       "all": "Todos",
       "web": "Apps Web",
       "mobile": "Móvil",
       "api": "APIs"
+    }
+  },
+
+  "github": {
+    "_comment": "🔒 Generic GitHub section text - keep as-is",
+    "title": "Repositorios de GitHub",
+    "subtitle": "Una selección de mis proyectos de código abierto y contribuciones", 
+    "loading": "Cargando repositorios...",
+    "viewProfile": "Ver Perfil de GitHub",
+    "viewAll": "Ver Todos los Repositorios en GitHub",
+    "noRepos": "Sin Repositorios Públicos",
+    "noReposDescription": "No se encontraron repositorios públicos o no cumplen los criterios.",
+    "stats": {
+      "stars": "Estrellas",
+      "forks": "Forks"
+    },
+    "actions": {
+      "code": "Código",
+      "demo": "Demo"
     }
   },
 
@@ -109,9 +157,12 @@
   },
 
   "footer": {
-    "_comment": "🔒 Texto de pie de página genérico - mantener como está",
+    "_comment": "🔒 Generic footer text - keep as-is",
+    "navigation": "Navegación",
+    "connect": "Conectar",
     "copyright": "© {{year}} {{name}}. Todos los derechos reservados.",
-    "builtWith": "Construido con ❤️ usando React, TypeScript y TailwindCSS"
+    "builtWith": "Hecho con ❤️ usando React, TypeScript y TailwindCSS",
+    "description": "Gracias por visitar mi portafolio. Siempre estoy emocionado de trabajar en nuevos proyectos y colaborar con personas increíbles. ¡Construyamos algo genial juntos!"
   },
 
   "theme": {

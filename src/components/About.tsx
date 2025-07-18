@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { MapPin, Mail, Phone, ExternalLink } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { PersonalInfo, SocialLinks } from '@/types'
 import { useScrollAnimation } from '@/hooks/useScrollAnimation'
 import Avatar from './Avatar'
@@ -11,6 +12,7 @@ interface AboutProps {
 
 const About = ({ personalInfo, socialLinks }: AboutProps) => {
   const { ref, controls } = useScrollAnimation({ threshold: 0.3 })
+  const { t } = useTranslation()
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -84,7 +86,7 @@ const About = ({ personalInfo, socialLinks }: AboutProps) => {
           animate={controls}
         >
           <motion.div className="text-center mb-16" variants={itemVariants}>
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4">About Me</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-gray-900 dark:text-gray-100">{t('about.title')}</h2>
             <div className="w-20 h-1 bg-primary-600 mx-auto rounded-full" />
           </motion.div>
 
@@ -119,7 +121,7 @@ const About = ({ personalInfo, socialLinks }: AboutProps) => {
               </div>
 
               <div className="pt-6">
-                <h3 className="text-xl font-semibold mb-4">Let's Connect</h3>
+                <h3 className="text-xl font-semibold mb-4 text-gray-900 dark:text-gray-100">{t('contact.info.title')}</h3>
                 <div className="flex gap-4">
                   {socialPlatforms.map((social) => (
                     social.url && (

@@ -68,7 +68,13 @@ export const useGitHubProjects = ({
     return () => {
       isMounted = false
     }
-  }, [githubUrl, maxGitHubProjects, enableGitHubIntegration, featuredRepos, manualProjects])
+  }, [
+    githubUrl, 
+    maxGitHubProjects, 
+    enableGitHubIntegration, 
+    JSON.stringify(featuredRepos), 
+    JSON.stringify(manualProjects)
+  ])
 
   return {
     projects,

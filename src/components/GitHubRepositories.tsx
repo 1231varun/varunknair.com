@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import { motion } from 'framer-motion'
 import { Github, Star, GitFork, ExternalLink, Eye } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { useScrollAnimation } from '@/hooks/useScrollAnimation'
 import { useGitHubProjects } from '@/hooks/useGitHubProjects'
 
@@ -17,24 +18,23 @@ const GitHubRepositories = ({
   featuredRepos = [],
   className = '' 
 }: GitHubRepositoriesProps) => {
+  const { t } = useTranslation()
   const { ref, controls } = useScrollAnimation({ threshold: 0.2 })
 
-  // Memoize arrays to prevent re-renders - ensure arrays are always defined
-  const memoizedFeaturedRepos = useMemo(() => featuredRepos || [], [featuredRepos])
-  const memoizedManualProjects = useMemo(() => [], [])
+  // Properly memoize arrays to prevent re-renders
+  const stableFeaturedRepos = useMemo(() => featuredRepos, [JSON.stringify(featuredRepos)])
+  const stableManualProjects = useMemo(() => [], [])
 
-  // Memoize the options to prevent unnecessary re-renders
+  // Memoize the options with stable dependencies
   const githubOptions = useMemo(() => ({
-    manualProjects: memoizedManualProjects,
+    manualProjects: stableManualProjects,
     githubUrl,
     maxGitHubProjects: maxRepos,
-    featuredRepos: memoizedFeaturedRepos,
+    featuredRepos: stableFeaturedRepos,
     enableGitHubIntegration: !!githubUrl,
-  }), [githubUrl, maxRepos, memoizedFeaturedRepos, memoizedManualProjects])
+  }), [githubUrl, maxRepos, stableFeaturedRepos, stableManualProjects])
 
   const { projects: githubProjects, isLoading, error } = useGitHubProjects(githubOptions)
-
-
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -94,11 +94,11 @@ const GitHubRepositories = ({
           <motion.div className="text-center mb-16" variants={itemVariants}>
             <div className="flex items-center justify-center gap-3 mb-4">
               <Github className="w-8 h-8 text-primary-600" />
-              <h2 className="text-3xl sm:text-4xl font-bold">GitHub Repositories</h2>
+              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100">{t('github.title')}</h2>
             </div>
             <div className="w-20 h-1 bg-primary-600 mx-auto rounded-full" />
             <p className="text-lg text-gray-600 dark:text-gray-300 mt-6 max-w-2xl mx-auto">
-              A selection of my open-source projects and contributions
+              {t('github.subtitle')}
             </p>
           </motion.div>
 
@@ -110,7 +110,7 @@ const GitHubRepositories = ({
             >
               <div className="inline-flex items-center gap-3 text-gray-600 dark:text-gray-400">
                 <div className="w-6 h-6 border-2 border-primary-600 border-t-transparent rounded-full animate-spin"></div>
-                Loading repositories...
+                {t('github.loading')}
               </div>
             </motion.div>
           )}
@@ -133,7 +133,7 @@ const GitHubRepositories = ({
                   className="btn-primary inline-flex items-center gap-2"
                 >
                   <Github className="w-5 h-5" />
-                  View on GitHub
+                  {t('github.viewProfile')}
                 </a>
               )}
             </motion.div>
@@ -182,11 +182,11 @@ const GitHubRepositories = ({
                     <div className="flex items-center gap-4 mb-4 text-sm text-gray-500 dark:text-gray-400">
                       <div className="flex items-center gap-1">
                         <Star className="w-4 h-4" />
-                        <span>Stars</span>
+                        <span>{t('github.stats.stars')}</span>
                       </div>
                       <div className="flex items-center gap-1">
                         <GitFork className="w-4 h-4" />
-                        <span>Forks</span>
+                        <span>{t('github.stats.forks')}</span>
                       </div>
                     </div>
 
@@ -200,7 +200,7 @@ const GitHubRepositories = ({
                           className="flex-1 btn-primary text-center text-sm py-2 flex items-center justify-center gap-1"
                         >
                           <Github className="w-4 h-4" />
-                          Code
+                          {t('github.actions.code')}
                         </a>
                       )}
                       
@@ -212,7 +212,7 @@ const GitHubRepositories = ({
                           className="flex-1 btn-secondary text-center text-sm py-2 flex items-center justify-center gap-1"
                         >
                           <ExternalLink className="w-4 h-4" />
-                          Demo
+                          {t('github.actions.demo')}
                         </a>
                       )}
                     </div>
@@ -233,7 +233,7 @@ const GitHubRepositories = ({
                     className="btn-secondary px-8 py-3 inline-flex items-center gap-2"
                   >
                     <Eye className="w-5 h-5" />
-                    View All Repositories on GitHub
+                    {t('github.viewAll')}
                   </a>
                 )}
               </motion.div>
@@ -248,10 +248,10 @@ const GitHubRepositories = ({
             >
               <Github className="w-16 h-16 text-gray-400 mx-auto mb-4" />
               <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">
-                No Public Repositories
+                {t('github.noRepos')}
               </h3>
               <p className="text-gray-600 dark:text-gray-400 mb-6">
-                No public repositories found or they don't meet the criteria.
+                {t('github.noReposDescription')}
               </p>
               <a
                 href={`https://github.com/${githubUsername}`}
@@ -260,7 +260,7 @@ const GitHubRepositories = ({
                 className="btn-primary inline-flex items-center gap-2"
               >
                 <Github className="w-5 h-5" />
-                View GitHub Profile
+                {t('github.viewProfile')}
               </a>
             </motion.div>
           )}

@@ -112,7 +112,7 @@ const Hero = ({ personalInfo, socialLinks: _socialLinks, resumeInfo }: HeroProps
               disabled={!resumeInfo.viewUrl || resumeInfo.viewUrl === '#'}
             >
               <Eye className="w-5 h-5" />
-              View Resume
+              {t('about.viewResume')}
             </motion.button>
 
             <motion.button
@@ -123,7 +123,7 @@ const Hero = ({ personalInfo, socialLinks: _socialLinks, resumeInfo }: HeroProps
               disabled={!resumeInfo.downloadUrl || resumeInfo.downloadUrl === '#'}
             >
               <Download className="w-5 h-5" />
-              Download Resume
+              {t('about.downloadResume')}
             </motion.button>
           </motion.div>
 
