@@ -1,0 +1,38 @@
+# Robots.txt for varunknair.com - Portfolio of Varun K Nair, Senior Software Engineer
+
+User-agent: *
+Allow: /
+
+# Priority paths for crawling
+Allow: /assets/
+Allow: /favicon.svg
+Allow: /*.css
+Allow: /*.js
+
+# Block unnecessary files and directories
+Disallow: /admin/
+Disallow: /.env*
+Disallow: /config/
+Disallow: /.git/
+Disallow: /node_modules/
+Disallow: /.netlify/
+Disallow: /src/
+Disallow: /*.map
+Disallow: /package*.json
+Disallow: /tsconfig*.json
+Disallow: /vite.config.*
+Disallow: /postcss.config.*
+Disallow: /tailwind.config.*
+
+# Sitemaps
+Sitemap: https://varunknair.com/sitemap.xml
+
+# Crawl delay for better server performance
+Crawl-delay: 1
+
+# Specific instructions for search engines
+User-agent: Googlebot
+Crawl-delay: 0
+
+User-agent: Bingbot
+Crawl-delay: 1 

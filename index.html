@@ -1,18 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google Tag Manager -->
-  <script>
-    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-54LD3LVV');
-  </script>
-  <!-- End Google Tag Manager -->
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://varunknair.com/" />
+  
+  <!-- Robots Meta -->
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  
+  <!-- Language and Geographic Targeting -->
+  <meta name="language" content="English" />
+  <meta name="geo.region" content="IN-KA" />
+  <meta name="geo.placename" content="Bengaluru" />
+  <meta name="geo.position" content="12.9716;77.5946" />
+  <meta name="ICBM" content="12.9716, 77.5946" />
+  
+  <!-- Additional SEO Meta Tags -->
+  <meta name="theme-color" content="#000000" />
+  <meta name="msapplication-TileColor" content="#000000" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <!-- SEO Meta Tags -->
   <meta name="description" content="Varun K Nair - Senior Software Engineer with 9+ years building scalable applications. Expert in React, Node.js, Python, JavaScript, TypeScript. Former Cisco, Proofpoint engineer in Bengaluru, India." />
@@ -23,7 +33,10 @@
   <meta property="og:title" content="Varun K Nair - Senior Software Engineer | 9+ Years React, Node.js, Python Expert" />
   <meta property="og:description" content="Senior Software Engineer with 9+ years building scalable applications at Cisco, Proofpoint. Expert in React, Node.js, Python, WebRTC, Microservices. Based in Bengaluru, India." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="/og-image.jpg" />
+  <meta property="og:image" content="/assets/images/profile.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:url" content="https://varunknair.com" />
   <meta property="og:site_name" content="Varun K Nair - Portfolio" />
   
@@ -31,68 +44,110 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Varun K Nair - Senior Software Engineer | React, Node.js, Python Expert" />
   <meta name="twitter:description" content="Senior Software Engineer with 9+ years experience. Former Cisco, Proofpoint engineer. Expert in React, Node.js, Python, WebRTC, Microservices. Bengaluru, India." />
-  <meta name="twitter:image" content="/og-image.jpg" />
+  <meta name="twitter:image" content="/assets/images/profile.jpg" />
   <meta name="twitter:creator" content="@1231varun" />
   
-  <!-- Fonts -->
+  <!-- Critical Resource Preloads -->
+  <link rel="preload" href="/src/main.tsx" as="script" />
+  
+  <!-- DNS Prefetch for External Domains -->
+  <link rel="dns-prefetch" href="//api.github.com">
+  <link rel="dns-prefetch" href="//fonts.googleapis.com">
+  <link rel="dns-prefetch" href="//fonts.gstatic.com">
+  <link rel="dns-prefetch" href="//www.googletagmanager.com">
+  
+  <!-- Fonts with Display Swap for Better CLS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
   
+  <!-- Resource Hints for Better Performance -->
+  <link rel="modulepreload" href="/src/main.tsx">
+  <link rel="prefetch" href="/assets/images/profile.jpg">
+  
   <title>Varun K Nair - Senior Software Engineer | React, Node.js, Python Expert | Bengaluru</title>
   
-  <!-- Structured Data for SEO -->
+  <!-- Enhanced Structured Data for SEO -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Varun K Nair",
+    "alternateName": ["Varun Nair", "Varun K. Nair"],
     "jobTitle": "Senior Software Engineer",
     "description": "Senior Software Engineer with 9+ years building scalable applications. Expert in React, Node.js, Python, JavaScript, TypeScript.",
     "url": "https://varunknair.com",
+    "image": "https://varunknair.com/assets/images/profile.jpg",
     "sameAs": [
       "https://github.com/1231varun",
       "https://www.linkedin.com/in/varun-k-nair-422a03120/",
       "https://twitter.com/1231varun"
     ],
-    "worksFor": [
-      {
-        "@type": "Organization",
-        "name": "Proofpoint"
-      }
-    ],
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Proofpoint",
+      "description": "Cybersecurity and Compliance Company"
+    },
     "alumniOf": [
       {
         "@type": "Organization",
-        "name": "Cisco Systems"
+        "name": "Cisco Systems",
+        "description": "Networking and Technology Company"
       },
       {
         "@type": "Organization", 
-        "name": "Normalyze"
+        "name": "Normalyze",
+        "description": "Cloud Security Platform"
       }
     ],
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Bengaluru",
+      "addressRegion": "Karnataka",
       "addressCountry": "IN"
     },
     "knowsAbout": [
       "React", "Node.js", "Python", "JavaScript", "TypeScript", "WebRTC", 
-      "Microservices", "AWS", "Full Stack Development", "Software Architecture"
-    ]
+      "Microservices", "AWS", "Full Stack Development", "Software Architecture",
+      "Frontend Development", "Backend Development", "Cloud Engineering"
+    ],
+    "hasOccupation": {
+      "@type": "Occupation",
+      "name": "Senior Software Engineer",
+      "description": "Building scalable web applications and software solutions",
+      "occupationLocation": {
+        "@type": "City",
+        "name": "Bengaluru"
+      }
+    },
+    "seeks": {
+      "@type": "Demand",
+      "name": "Software Engineering Opportunities",
+      "description": "Senior Software Engineer roles in React, Node.js, Python development"
+    }
   }
   </script>
   </head>
   <body>
+  <!-- Google Tag Manager -->
+  <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-54LD3LVV');
+  </script>
+  <!-- End Google Tag Manager -->
+  
   <!-- Google Tag Manager (noscript) -->
-      <noscript>
-        <iframe 
-          src="https://www.googletagmanager.com/ns.html?id=GTM-54LD3LVV"
-          height="0"
-          width="0"
-          style="display:none;visibility:hidden"
-        ></iframe>
-      </noscript>
+  <noscript>
+    <iframe 
+      src="https://www.googletagmanager.com/ns.html?id=GTM-54LD3LVV"
+      height="0"
+      width="0"
+      style="display:none;visibility:hidden"
+    ></iframe>
+  </noscript>
   <!-- End Google Tag Manager (noscript) -->
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>

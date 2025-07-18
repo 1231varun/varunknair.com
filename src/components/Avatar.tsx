@@ -79,6 +79,7 @@ const Avatar = ({ name, size = 'lg', imageUrl, className = '' }: AvatarProps) =>
           src={imageUrl}
           alt={`${name}'s avatar`}
           className="w-full h-full object-cover"
+          loading="lazy"
           onError={(e) => {
             // If image fails to load, hide it and show initials
             const target = e.target as HTMLImageElement
