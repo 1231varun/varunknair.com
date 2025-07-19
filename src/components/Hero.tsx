@@ -16,6 +16,7 @@ const Hero = ({ personalInfo, socialLinks: _socialLinks, resumeInfo }: HeroProps
   const { t } = useTranslation()
   const { ref, controls } = useScrollAnimation()
   const [isResumePreviewOpen, setIsResumePreviewOpen] = useState(false)
+  const { animationCapability } = useScrollAnimation({ threshold: 0.2 })
 
   const scrollToAbout = () => {
     const aboutSection = document.querySelector('#about')
@@ -60,6 +61,84 @@ const Hero = ({ personalInfo, socialLinks: _socialLinks, resumeInfo }: HeroProps
         ease: 'easeOut',
       },
     },
+  }
+
+  // Use fallback only if animations aren't supported (reduced motion)
+  if (animationCapability === 'none') {
+    return (
+      <>
+        <section
+          id="hero"
+          className="min-h-screen flex items-center justify-center relative bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 pt-20"
+          ref={ref}
+        >
+          <div className="container-max-width section-padding">
+            <div className="text-center max-w-4xl mx-auto">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 px-4 sm:px-0">
+                <span className="block text-lg sm:text-xl md:text-2xl font-normal text-gray-600 dark:text-gray-400 mb-2">
+                  {t('hero.greeting')}
+                </span>
+                <span className="text-gradient">
+                  {personalInfo.fullName}
+                </span>
+              </h1>
+
+              <p className="text-lg sm:text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-6 sm:mb-8 font-medium px-4 sm:px-0">
+                {personalInfo.tagline}
+              </p>
+
+              <p className="text-base sm:text-lg text-gray-700 dark:text-gray-400 mb-8 sm:mb-12 max-w-2xl mx-auto leading-relaxed px-4 sm:px-0">
+                {personalInfo.bio}
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <button
+                  onClick={handleResumeView}
+                  className="btn-primary flex items-center gap-2 px-8 py-3 text-lg"
+                  disabled={!resumeInfo.viewUrl || resumeInfo.viewUrl === '#'}
+                >
+                  <Eye className="w-5 h-5" />
+                  {t('about.viewResume')}
+                </button>
+
+                <button
+                  onClick={handleResumeDownload}
+                  className="btn-secondary flex items-center gap-2 px-8 py-3 text-lg"
+                  disabled={!resumeInfo.downloadUrl || resumeInfo.downloadUrl === '#'}
+                >
+                  <Download className="w-5 h-5" />
+                  {t('about.downloadResume')}
+                </button>
+              </div>
+
+              <div className="mt-16">
+                <button
+                  onClick={scrollToAbout}
+                  className="text-gray-500 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200"
+                  aria-label="Scroll to about section"
+                >
+                  <ArrowDown className="w-6 h-6 mx-auto" />
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Background Elements - simplified for fallback */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary-200 dark:bg-primary-900 rounded-full opacity-20 blur-3xl" />
+            <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-blue-200 dark:bg-blue-900 rounded-full opacity-20 blur-3xl" />
+          </div>
+        </section>
+
+        {/* Resume Preview Modal */}
+        <ResumePreview
+          isOpen={isResumePreviewOpen}
+          onClose={() => setIsResumePreviewOpen(false)}
+          resumeInfo={resumeInfo}
+          personalInfo={personalInfo}
+        />
+      </>
+    )
   }
 
   return (

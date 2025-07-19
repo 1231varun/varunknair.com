@@ -19,7 +19,7 @@ const GitHubRepositories = ({
   className = '' 
 }: GitHubRepositoriesProps) => {
   const { t } = useTranslation()
-  const { ref, controls } = useScrollAnimation({ threshold: 0.2 })
+  const { ref, controls, animationCapability } = useScrollAnimation({ threshold: 0.2 })
   const [showFallback, setShowFallback] = useState(false)
 
   // Early return check
@@ -41,6 +41,8 @@ const GitHubRepositories = ({
   }), [githubUrl, maxRepos, stableFeaturedRepos, stableManualProjects])
 
   const { projects: githubProjects, isLoading, error, retry, retryCount, hasAttempted } = useGitHubProjects(githubOptions)
+
+
 
   // Fallback timeout to prevent infinite loading
   useEffect(() => {
@@ -107,6 +109,126 @@ const GitHubRepositories = ({
   const shouldShowRepos = !isLoading && !error && !showFallback && githubProjects.length > 0
   const shouldShowEmpty = !isLoading && !error && !showFallback && githubProjects.length === 0 && hasAttempted
   const shouldShowInitializing = !isLoading && !error && !showFallback && githubProjects.length === 0 && !hasAttempted
+
+  // Use fallback only if animations aren't supported (reduced motion)
+  if (animationCapability === 'none') {
+    // Create a simplified non-animated version of this component
+    return (
+      <section id="github-repositories" className={`py-20 bg-gray-50 dark:bg-gray-800/50 ${className}`} ref={ref}>
+        <div className="container-max-width section-padding">
+          <div>
+            <div className="text-center mb-16">
+              <div className="flex items-center justify-center gap-3 mb-4">
+                <Github className="w-8 h-8 text-primary-600" />
+                <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100">{t('github.title')}</h2>
+              </div>
+              <div className="w-20 h-1 bg-primary-600 mx-auto rounded-full" />
+              <p className="text-lg text-gray-600 dark:text-gray-300 mt-6 max-w-2xl mx-auto">
+                {t('github.subtitle')}
+              </p>
+            </div>
+
+            {/* Show appropriate content based on state */}
+            {shouldShowLoading && (
+              <div className="text-center py-16">
+                <div className="inline-flex flex-col items-center gap-4 text-gray-600 dark:text-gray-400">
+                  <div className="w-8 h-8 border-3 border-primary-600 border-t-transparent rounded-full animate-spin"></div>
+                  <div className="text-center">
+                    <p className="text-lg font-medium">{t('github.loading')}</p>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {shouldShowRepos && githubProjects.length > 0 && (
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {githubProjects.map((project) => (
+                  <div
+                    key={project.id}
+                    className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg card-hover"
+                  >
+                    <div className="flex items-start justify-between mb-4">
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 line-clamp-1">
+                        {project.title}
+                      </h3>
+                      <div className="flex gap-2 ml-2">
+                        {project.githubUrl && (
+                          <a
+                            href={project.githubUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200"
+                          >
+                            <Github className="w-5 h-5" />
+                          </a>
+                        )}
+                        {project.projectUrl && (
+                          <a
+                            href={project.projectUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200"
+                          >
+                            <ExternalLink className="w-5 h-5" />
+                          </a>
+                        )}
+                      </div>
+                    </div>
+
+                    <p className="text-gray-600 dark:text-gray-400 mb-4 line-clamp-3">
+                      {project.description}
+                    </p>
+
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {project.technologies.slice(0, 3).map((tech) => (
+                        <span
+                          key={tech}
+                          className="px-2 py-1 bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 rounded text-sm font-medium"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                      {project.technologies.length > 3 && (
+                        <span className="px-2 py-1 text-gray-500 dark:text-gray-400 text-sm">
+                          +{project.technologies.length - 3}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {(shouldShowEmpty || shouldShowError || shouldShowFallback) && (
+              <div className="text-center py-12">
+                <div className="max-w-md mx-auto">
+                  <Github className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">
+                    {shouldShowError ? t('github.error') : t('github.noRepositories')}
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-400 mb-6">
+                    {shouldShowError ? error : t('github.noRepositoriesDescription')}
+                  </p>
+                  
+                  {(shouldShowError || shouldShowFallback) && (
+                    <button
+                      onClick={retry}
+                      className="btn-primary px-6 py-2 inline-flex items-center gap-2"
+                    >
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                      </svg>
+                      {t('github.tryAgain')}
+                    </button>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+    )
+  }
 
   return (
     <section id="github-repositories" className={`py-20 bg-gray-50 dark:bg-gray-800/50 ${className}`} ref={ref}>

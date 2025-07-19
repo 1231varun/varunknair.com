@@ -128,7 +128,13 @@
   }
   </script>
   </head>
-  <body>
+  <body class="no-js">
+  <script>
+    // Remove no-js class immediately
+    document.body.classList.remove('no-js');
+    // Add js class for progressive enhancement
+    document.body.classList.add('js');
+  </script>
   <!-- Google Tag Manager -->
   <script>
     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -149,6 +155,16 @@
     ></iframe>
   </noscript>
   <!-- End Google Tag Manager (noscript) -->
+  
+  <!-- Fallback for disabled JavaScript -->
+  <noscript>
+    <div style="background: #f3f4f6; padding: 1rem; text-align: center; border-bottom: 2px solid #e5e7eb;">
+      <p style="margin: 0; color: #374151; font-family: system-ui, sans-serif;">
+        This website works best with JavaScript enabled. Some interactive features may not work properly.
+      </p>
+    </div>
+  </noscript>
+  
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
     

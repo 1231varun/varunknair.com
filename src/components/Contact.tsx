@@ -12,7 +12,7 @@ interface ContactProps {
 
 const Contact = ({ personalInfo }: ContactProps) => {
   const { t } = useTranslation()
-  const { ref, controls } = useScrollAnimation({ threshold: 0.2 })
+  const { ref, controls, animationCapability } = useScrollAnimation({ threshold: 0.2 })
 
   const [formData, setFormData] = useState<ContactFormData>({
     name: '',
@@ -24,6 +24,8 @@ const Contact = ({ personalInfo }: ContactProps) => {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
   const [validationErrors, setValidationErrors] = useState<string[]>([])
+
+
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -106,6 +108,178 @@ const Contact = ({ personalInfo }: ContactProps) => {
       href: null,
     },
   ]
+
+  // Use fallback only if animations aren't supported (reduced motion)
+  if (animationCapability === 'none') {
+    return (
+      <section id="contact" className="py-20 bg-gray-50 dark:bg-gray-800/50" ref={ref}>
+        <div className="container-max-width section-padding">
+          <div>
+            <div className="text-center mb-16">
+              <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-gray-900 dark:text-gray-100">{t('contact.title')}</h2>
+              <div className="w-20 h-1 bg-primary-600 mx-auto rounded-full" />
+              <p className="text-lg text-gray-600 dark:text-gray-300 mt-6 max-w-2xl mx-auto">
+                {t('contact.subtitle')}
+              </p>
+            </div>
+
+            <div className="grid lg:grid-cols-2 gap-12">
+              {/* Contact Information */}
+              <div className="space-y-8">
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">
+                  {t('contact.info.title')}
+                </h3>
+                
+                <div className="space-y-6">
+                  {contactInfo.map((item, index) => (
+                    <div key={index} className="flex items-start gap-4">
+                      <div className="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900 rounded-lg flex items-center justify-center text-primary-600 dark:text-primary-400">
+                        {item.icon}
+                      </div>
+                      <div>
+                        <h4 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-1">
+                          {item.title}
+                        </h4>
+                        {item.href ? (
+                          <a
+                            href={item.href}
+                            className="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200"
+                          >
+                            {item.value}
+                          </a>
+                        ) : (
+                          <p className="text-gray-600 dark:text-gray-400">{item.value}</p>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Contact Form */}
+              <div>
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">
+                  {t('contact.form.title')}
+                </h3>
+                
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        {t('contact.form.name')} *
+                      </label>
+                      <input
+                        type="text"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+                        placeholder={t('contact.form.namePlaceholder')}
+                      />
+                    </div>
+                    
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        {t('contact.form.email')} *
+                      </label>
+                      <input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+                        placeholder={t('contact.form.emailPlaceholder')}
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      {t('contact.form.subject')} *
+                    </label>
+                    <input
+                      type="text"
+                      name="subject"
+                      value={formData.subject}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+                      placeholder={t('contact.form.subjectPlaceholder')}
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      {t('contact.form.message')} *
+                    </label>
+                    <textarea
+                      name="message"
+                      rows={6}
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 resize-none"
+                      placeholder={t('contact.form.messagePlaceholder')}
+                    />
+                  </div>
+
+                  {/* Validation Errors */}
+                  {validationErrors.length > 0 && (
+                    <div className="bg-red-50 dark:bg-red-900/50 border border-red-200 dark:border-red-800 rounded-lg p-4">
+                      <ul className="list-disc list-inside text-red-600 dark:text-red-400 text-sm space-y-1">
+                        {validationErrors.map((error, index) => (
+                          <li key={index}>{error}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {/* Submit Button */}
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className={`w-full py-3 px-6 rounded-lg font-medium transition-all duration-200 flex items-center justify-center gap-2 ${
+                      isSubmitting
+                        ? 'bg-gray-400 cursor-not-allowed'
+                        : submitStatus === 'success'
+                        ? 'bg-green-600 hover:bg-green-700'
+                        : submitStatus === 'error'
+                        ? 'bg-red-600 hover:bg-red-700'
+                        : 'bg-primary-600 hover:bg-primary-700'
+                    } text-white`}
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                        {t('contact.form.sending')}
+                      </>
+                    ) : submitStatus === 'success' ? (
+                      <>
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                        {t('contact.form.sent')}
+                      </>
+                    ) : submitStatus === 'error' ? (
+                      <>
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                        {t('contact.form.error')}
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-5 h-5" />
+                        {t('contact.form.send')}
+                      </>
+                    )}
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    )
+  }
 
   return (
     <section id="contact" className="py-20 bg-gray-50 dark:bg-gray-800/50" ref={ref}>

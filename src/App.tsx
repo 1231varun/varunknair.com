@@ -9,6 +9,7 @@ import {
   analyticsConfig 
 } from '@/config/personal'
 import { analytics } from '@/utils/analytics'
+// import { logDeviceInfo } from '@/utils/deviceDetection'
 
 // Import the new components
 import Header from '@/components/Header'
@@ -25,9 +26,14 @@ function App() {
   const { theme, toggleTheme } = useTheme()
   const { experience, professionalProjects, personalInfo: languageAwarePersonalInfo } = useLanguageAwareData()
 
-  // Initialize analytics
+  // Initialize analytics and debug device detection
   useEffect(() => {
     analytics.configure(analyticsConfig)
+    
+    // Debug device detection (only in development)
+    // if (import.meta.env.MODE === 'development') {
+    //   logDeviceInfo()
+    // }
   }, [])
 
   // Create a config object from personal data

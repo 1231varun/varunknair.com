@@ -60,4 +60,23 @@
   .card-hover {
     @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
   }
+}
+
+/* Reduced motion support - only disable animations for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Fallback for when JavaScript is disabled */
+.no-js section {
+  opacity: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
 } 
