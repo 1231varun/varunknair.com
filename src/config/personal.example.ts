@@ -21,6 +21,7 @@ export const personalInfo: PersonalInfo = {
   location: import.meta.env.VITE_LOCATION || 'Your City, Country',
   tagline: import.meta.env.VITE_TAGLINE || 'Your Professional Tagline | Full-Stack Developer',
   bio: import.meta.env.VITE_BIO || 'Passionate developer with X years of experience building scalable applications and elegant user experiences. Skilled in modern web technologies and passionate about creating impactful solutions.',
+  personalStory: import.meta.env.VITE_PERSONAL_STORY || 'Share your personal story here! Talk about your hobbies, family, interests, and what makes you unique beyond your technical skills. This appears in the About Me section to help people connect with you as a person.',
   profileImageUrl: import.meta.env.VITE_PROFILE_IMAGE_URL || '',
   yearsOfExperience: 5, // Update this with your actual years of experience
 }
