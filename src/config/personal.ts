@@ -14,11 +14,34 @@ const getCurrentLanguage = (): string => {
   return i18n.language || i18n.resolvedLanguage || 'en'
 }
 
-// Bio data that changes with language
+// Bio data that changes with language (for Hero section - technical/professional)
 const bioData: Record<string, string> = {
   en: 'Results-driven Senior Software Engineer with close to 9 years of experience building and optimizing scalable, high-performance applications using JavaScript, React, Node.js, Python and cloud-native technologies. Proven expertise in leading end-to-end projects, mentoring teams, and improving development processes to deliver impactful solutions.',
   es: 'Ingeniero de Software Senior orientado a resultados con cerca de 9 años de experiencia construyendo y optimizando aplicaciones escalables y de alto rendimiento usando JavaScript, React, Node.js, Python y tecnologías cloud-nativas. Experiencia comprobada liderando proyectos end-to-end, mentoreando equipos, y mejorando procesos de desarrollo para entregar soluciones impactantes.',
   de: 'Ergebnisorientierter Senior Software Engineer mit fast 9 Jahren Erfahrung in der Entwicklung und Optimierung skalierbarer, hochperformanter Anwendungen mit JavaScript, React, Node.js, Python und cloud-nativen Technologien. Nachgewiesene Expertise in der Leitung von End-to-End-Projekten, Team-Mentoring und der Verbesserung von Entwicklungsprozessen zur Lieferung wirkungsvoller Lösungen.',
+}
+
+// Personal story data for About Me section (personal/lifestyle)
+const personalStoryData: Record<string, string> = {
+  en: `At 30, I'm living my best life in Bangalore with my wonderful wife and our adorable 7-month-old son who keeps us on our toes! My journey with computers started early – I was that kid who couldn't resist figuring out game hacks and exploring every corner of the digital world.
+
+These days, when I'm not building scalable applications at work, you'll find me tinkering with AI models and creating fun little projects that spark my curiosity. I'm a hardcore anime fan (always up for a good recommendation!), love gaming, and try to squeeze in some swimming whenever possible.
+
+Family time is everything to me. Whether we're watching movies together or just enjoying quiet moments at home, those are the moments that truly matter. Being a new dad has given me a whole new perspective on creating technology that makes life better for people.
+
+The blend of professional challenges and personal passions keeps me energized. From debugging complex systems to binge-watching the latest anime series, I believe in living fully and embracing all the things that make life interesting.`,
+  
+  es: `A los 30, estoy viviendo mi mejor vida en Bangalore con mi maravillosa esposa y nuestro adorable hijo de 7 meses que nos mantiene ocupados. Mi viaje con las computadoras comenzó temprano – era ese niño que no podía resistir descifrar hacks de juegos y explorar cada rincón del mundo digital.
+
+En estos días, cuando no estoy construyendo aplicaciones escalables en el trabajo, me encontrarás experimentando con modelos de IA y creando pequeños proyectos divertidos que despiertan mi curiosidad. Soy un fanático hardcore del anime (¡siempre dispuesto a recibir buenas recomendaciones!), amo los videojuegos, e intento encontrar tiempo para nadar cuando sea posible.
+
+El tiempo en familia lo es todo para mí. Ya sea viendo películas juntos o simplemente disfrutando momentos tranquilos en casa, esos son los momentos que realmente importan. Ser padre primerizo me ha dado una perspectiva completamente nueva sobre crear tecnología que mejore la vida de las personas.`,
+  
+  de: `Mit 30 lebe ich mein bestes Leben in Bangalore mit meiner wundervollen Frau und unserem bezaubernden 7 Monate alten Sohn, der uns auf Trab hält! Meine Reise mit Computern begann früh – ich war das Kind, das nicht widerstehen konnte, Spiel-Hacks herauszufinden und jede Ecke der digitalen Welt zu erkunden.
+
+Heutzutage, wenn ich nicht gerade skalierbare Anwendungen bei der Arbeit baue, findest du mich beim Experimentieren mit KI-Modellen und beim Erstellen lustiger kleiner Projekte, die meine Neugier wecken. Ich bin ein Hardcore-Anime-Fan (immer bereit für gute Empfehlungen!), liebe Gaming und versuche, wann immer möglich schwimmen zu gehen.
+
+Familienzeit bedeutet mir alles. Ob wir zusammen Filme schauen oder einfach ruhige Momente zu Hause genießen, das sind die Momente, die wirklich zählen. Neuer Vater zu sein hat mir eine völlig neue Perspektiva darauf gegeben, Technologie zu schaffen, die das Leben der Menschen verbessert.`
 }
 
 // Tagline data that changes with language  
@@ -28,10 +51,15 @@ const taglineData: Record<string, string> = {
   de: 'Senior Software Engineer | 9+ Jahre Entwicklung Skalierbarer Anwendungen',
 }
 
-// Get language-aware bio and tagline
+// Get language-aware bio, personal story, and tagline
 const getLanguageAwareBio = (): string => {
   const currentLang = getCurrentLanguage()
   return bioData[currentLang] || bioData.en
+}
+
+const getLanguageAwarePersonalStory = (): string => {
+  const currentLang = getCurrentLanguage()
+  return personalStoryData[currentLang] || personalStoryData.en
 }
 
 const getLanguageAwareTagline = (): string => {
@@ -48,6 +76,7 @@ export const getPersonalInfo = (): PersonalInfo => {
     location: import.meta.env.VITE_LOCATION || 'Bengaluru, India',
     tagline: getLanguageAwareTagline(),
     bio: getLanguageAwareBio(),
+    personalStory: getLanguageAwarePersonalStory(),
     profileImageUrl: import.meta.env.VITE_PROFILE_IMAGE_URL || '',
     yearsOfExperience: 9,
   }
@@ -62,6 +91,7 @@ export const personalInfo: PersonalInfo = {
   location: import.meta.env.VITE_LOCATION || 'Bengaluru, India',
   tagline: getLanguageAwareTagline(),
   bio: getLanguageAwareBio(),
+  personalStory: getLanguageAwarePersonalStory(),
   profileImageUrl: import.meta.env.VITE_PROFILE_IMAGE_URL || '',
   yearsOfExperience: 9,
 }

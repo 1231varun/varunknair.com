@@ -5,6 +5,7 @@ export interface PersonalInfo {
   location: string
   tagline: string
   bio: string
+  personalStory: string
   profileImageUrl?: string
   yearsOfExperience?: number
 }

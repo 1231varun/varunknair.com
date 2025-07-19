@@ -92,9 +92,14 @@ const About = ({ personalInfo, socialLinks }: AboutProps) => {
 
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div className="space-y-6">
-                <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-                  {personalInfo.bio}
-                </p>
+                {/* Split personal story into paragraphs for better readability */}
+                <div className="space-y-4">
+                  {personalInfo.personalStory.split('\n\n').filter(paragraph => paragraph.trim()).map((paragraph, index) => (
+                    <p key={index} className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                      {paragraph.trim()}
+                    </p>
+                  ))}
+                </div>
 
                 <div className="space-y-4">
                   {contactInfo.map((item, index) => (
@@ -174,9 +179,18 @@ const About = ({ personalInfo, socialLinks }: AboutProps) => {
 
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div className="space-y-6" variants={itemVariants}>
-              <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-                {personalInfo.bio}
-              </p>
+              {/* Split personal story into paragraphs for better readability */}
+              <div className="space-y-4">
+                {personalInfo.personalStory.split('\n\n').filter(paragraph => paragraph.trim()).map((paragraph, index) => (
+                  <motion.p 
+                    key={index} 
+                    className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed"
+                    variants={itemVariants}
+                  >
+                    {paragraph.trim()}
+                  </motion.p>
+                ))}
+              </div>
 
               <div className="space-y-4">
                 {contactInfo.map((item, index) => (
