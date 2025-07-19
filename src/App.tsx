@@ -30,10 +30,8 @@ function App() {
   useEffect(() => {
     analytics.configure(analyticsConfig)
     
-    // Debug device detection (only in development)
-    // if (import.meta.env.MODE === 'development') {
-    //   logDeviceInfo()
-    // }
+    // Debug device detection - temporarily enabled to verify iPhone fix
+    // logDeviceInfo()
   }, [])
 
   // Create a config object from personal data

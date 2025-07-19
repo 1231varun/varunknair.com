@@ -137,8 +137,8 @@ const Experience = ({ experience }: ExperienceProps) => {
   }
 
   return (
-    <section id="experience" className="py-20 bg-gray-50 dark:bg-gray-800/50" ref={ref}>
-      <div className="container-max-width section-padding">
+    <section id="experience" className="py-20 bg-gray-50 dark:bg-gray-800/50 no-overflow" ref={ref}>
+      <div className="container-max-width section-padding mobile-safe">
         <motion.div
           variants={containerVariants}
           initial="hidden"

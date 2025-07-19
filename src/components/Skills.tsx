@@ -164,8 +164,8 @@ const Skills = ({ skills }: SkillsProps) => {
   }
 
   return (
-    <section id="skills" className="py-20 bg-white dark:bg-gray-900" ref={ref}>
-      <div className="container-max-width section-padding">
+    <section id="skills" className="py-20 bg-white dark:bg-gray-900 no-overflow" ref={ref}>
+      <div className="container-max-width section-padding mobile-safe">
         <motion.div
           variants={containerVariants}
           initial="hidden"

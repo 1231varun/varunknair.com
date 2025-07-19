@@ -160,8 +160,8 @@ const About = ({ personalInfo, socialLinks }: AboutProps) => {
   }
 
   return (
-    <section id="about" className="py-20 bg-gray-50 dark:bg-gray-800/50" ref={ref}>
-      <div className="container-max-width section-padding">
+    <section id="about" className="py-20 bg-gray-50 dark:bg-gray-800/50 no-overflow" ref={ref}>
+      <div className="container-max-width section-padding mobile-safe">
         <motion.div
           variants={containerVariants}
           initial="hidden"

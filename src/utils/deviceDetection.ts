@@ -66,10 +66,11 @@ export const getDeviceInfo = (): DeviceInfo => {
   }
   
   // Determine if device needs animation fallback
-  // Only Android Chrome has confirmed IntersectionObserver issues on initial load
-  // iOS devices generally work well with modern browsers
+  // Based on research: iPhone Safari has memory management issues that prevent component rendering
+  // Especially prevalent on iPhone 12/13/14 and when memory usage is high
   const needsAnimationFallback = (
-    (isAndroid && isMobile && isChrome) // Specifically Android Chrome mobile - known issues
+    (isIOS && isMobile) ||               // iPhone Safari - memory management issues
+    (isAndroid && isMobile && isChrome)  // Android Chrome mobile - IntersectionObserver issues
   )
   
   return {
@@ -89,13 +90,18 @@ export const getDeviceInfo = (): DeviceInfo => {
 // Check if animations are likely to perform well
 export const getAnimationCapability = (): 'full' | 'limited' | 'none' => {
   const deviceInfo = getDeviceInfo()
+  const iPhoneInfo = getIPhoneInfo()
   
   if (deviceInfo.reducedMotion) {
     return 'none'
   }
   
-  // Most modern mobile browsers handle animations well
-  // Only limit for confirmed problematic combinations
+  // iPhone 12/13/14 have severe memory management issues - more aggressive fallback
+  if (iPhoneInfo.isOlderiPhone) {
+    return 'limited'
+  }
+  
+  // Other mobile devices with confirmed issues
   if (deviceInfo.needsAnimationFallback) {
     return 'limited'
   }
@@ -111,8 +117,10 @@ export const isIntersectionObserverReliable = (): boolean => {
   
   const deviceInfo = getDeviceInfo()
   
-  // Only Android Chrome mobile has confirmed IntersectionObserver issues
-  if (deviceInfo.isAndroid && deviceInfo.isMobile && deviceInfo.isChrome) {
+  // iPhone Safari has memory management issues that prevent proper component rendering
+  // Android Chrome mobile has confirmed IntersectionObserver issues
+  if ((deviceInfo.isIOS && deviceInfo.isMobile) || 
+      (deviceInfo.isAndroid && deviceInfo.isMobile && deviceInfo.isChrome)) {
     return false
   }
   
@@ -124,6 +132,7 @@ export const logDeviceInfo = (): void => {
   if (typeof window === 'undefined') return
   
   const deviceInfo = getDeviceInfo()
+  const iPhoneInfo = getIPhoneInfo()
   const animationCapability = getAnimationCapability()
   const observerReliable = isIntersectionObserverReliable()
   
@@ -142,6 +151,11 @@ export const logDeviceInfo = (): void => {
     isIOS: deviceInfo.isIOS,
     isAndroid: deviceInfo.isAndroid
   })
+  console.log('📱 iPhone Info:', {
+    model: iPhoneInfo.model,
+    isOlderiPhone: iPhoneInfo.isOlderiPhone,
+    isNeweriPhone: iPhoneInfo.isNeweriPhone
+  })
   console.log('🎨 Animation Settings:', {
     animationCapability,
     reducedMotion: deviceInfo.reducedMotion,
@@ -150,6 +164,30 @@ export const logDeviceInfo = (): void => {
   })
   console.log('🔧 User Agent:', navigator.userAgent)
   console.groupEnd()
+}
+
+// Get iPhone model information for targeted optimizations
+export const getIPhoneInfo = () => {
+  if (typeof window === 'undefined' || typeof navigator === 'undefined') {
+    return { isOlderiPhone: false, isNeweriPhone: false, model: null }
+  }
+
+  const userAgent = navigator.userAgent
+  
+  // iPhone model detection via user agent
+  // iPhone 12/13/14 have more severe memory management issues
+  const olderIPhoneModels = /iPhone1[2-4],/i // iPhone 12, 13, 14 series
+  const newerIPhoneModels = /iPhone1[5-9],|iPhone[2-9][0-9],/i // iPhone 15+ series
+  
+  const isOlderiPhone = olderIPhoneModels.test(userAgent)
+  const isNeweriPhone = newerIPhoneModels.test(userAgent)
+  
+  let model = null
+  if (isOlderiPhone) model = 'older' // 12/13/14 series
+  else if (isNeweriPhone) model = 'newer' // 15+ series
+  else if (userAgent.includes('iPhone')) model = 'unknown'
+  
+  return { isOlderiPhone, isNeweriPhone, model }
 }
 
 export default getDeviceInfo 

@@ -112,8 +112,8 @@ const Contact = ({ personalInfo }: ContactProps) => {
   // Use fallback only if animations aren't supported (reduced motion)
   if (animationCapability === 'none') {
     return (
-      <section id="contact" className="py-20 bg-gray-50 dark:bg-gray-800/50" ref={ref}>
-        <div className="container-max-width section-padding">
+      <section id="contact" className="py-20 bg-gray-50 dark:bg-gray-800/50 no-overflow" ref={ref}>
+        <div className="container-max-width section-padding mobile-safe">
           <div>
             <div className="text-center mb-16">
               <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-gray-900 dark:text-gray-100">{t('contact.title')}</h2>
@@ -282,8 +282,8 @@ const Contact = ({ personalInfo }: ContactProps) => {
   }
 
   return (
-    <section id="contact" className="py-20 bg-gray-50 dark:bg-gray-800/50" ref={ref}>
-      <div className="container-max-width section-padding">
+    <section id="contact" className="py-20 bg-gray-50 dark:bg-gray-800/50 no-overflow" ref={ref}>
+      <div className="container-max-width section-padding mobile-safe">
         <motion.div
           variants={containerVariants}
           initial="hidden"

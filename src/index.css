@@ -9,6 +9,7 @@
 
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
   }
 
   body {
@@ -16,6 +17,7 @@
     font-family: 'Inter', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden; /* Prevent horizontal scrolling on mobile */
   }
 
   /* Custom scrollbar */
@@ -59,6 +61,16 @@
 
   .card-hover {
     @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+  }
+
+  /* Prevent horizontal overflow on mobile */
+  .no-overflow {
+    @apply max-w-full overflow-x-hidden;
+  }
+
+  /* Ensure containers don't cause horizontal scroll */
+  .mobile-safe {
+    @apply w-full max-w-full min-w-0;
   }
 }
 

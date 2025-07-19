@@ -1,7 +1,7 @@
 import { useInView } from 'react-intersection-observer'
 import { useAnimation } from 'framer-motion'
 import { useEffect, useState } from 'react'
-import { getDeviceInfo, getAnimationCapability, isIntersectionObserverReliable } from '../utils/deviceDetection'
+import { getDeviceInfo, getAnimationCapability, isIntersectionObserverReliable, getIPhoneInfo } from '../utils/deviceDetection'
 
 interface UseScrollAnimationOptions {
   threshold?: number
@@ -16,6 +16,7 @@ export const useScrollAnimation = (options: UseScrollAnimationOptions = {}) => {
   
   // Get device and animation capability info
   const deviceInfo = getDeviceInfo()
+  const iPhoneInfo = getIPhoneInfo()
   const animationCapability = getAnimationCapability()
   const observerReliable = isIntersectionObserverReliable()
   
@@ -60,12 +61,21 @@ export const useScrollAnimation = (options: UseScrollAnimationOptions = {}) => {
         return () => clearTimeout(timer)
       }
       
-      // Fallback timer for mobile devices only - much shorter timeout
+      // Targeted fallback based on device-specific issues:
+      // iPhone 12/13/14: Severe memory issues - immediate fallback
+      // Other iPhones: Moderate memory issues - 0.5s fallback  
+      // Android Chrome: IntersectionObserver issues - 1.5s fallback
       if (!hasTriggered) {
+        let fallbackTimeout = 1500 // Default for Android Chrome
+        
+        if (deviceInfo.isIOS) {
+          fallbackTimeout = iPhoneInfo.isOlderiPhone ? 100 : 500 // 0.1s for iPhone 12/13/14, 0.5s for others
+        }
+        
         const fallbackTimer = setTimeout(() => {
           controls.start('visible')
           setHasTriggered(true)
-        }, 1500) // 1.5 seconds fallback for mobile only
+        }, fallbackTimeout)
         
         return () => clearTimeout(fallbackTimer)
       }
