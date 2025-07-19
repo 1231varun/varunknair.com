@@ -128,9 +128,9 @@ const ResumePreview = ({ isOpen, onClose, resumeInfo, personalInfo }: ResumePrev
           onClick={(e) => e.stopPropagation()}
         >
           {/* Header */}
-          <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
-            <div>
-              <h3 id="resume-preview-title" className="text-xl font-bold text-gray-900 dark:text-gray-100">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 sm:p-6 border-b border-gray-200 dark:border-gray-700 gap-4">
+            <div className="w-full sm:w-auto">
+              <h3 id="resume-preview-title" className="text-lg sm:text-xl font-bold text-gray-900 dark:text-gray-100">
                 {t('resume.preview.title')}
               </h3>
               <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
@@ -138,31 +138,33 @@ const ResumePreview = ({ isOpen, onClose, resumeInfo, personalInfo }: ResumePrev
               </p>
             </div>
             
-            <div className="flex items-center gap-3">
+            <div className="flex flex-wrap items-center gap-2 sm:gap-3 w-full sm:w-auto">
               {/* Download Button */}
               <motion.button
                 onClick={handleDownload}
-                className="btn-primary px-4 py-2 text-sm inline-flex items-center gap-2"
+                className="btn-primary px-3 sm:px-4 py-2 text-sm inline-flex items-center gap-2 flex-1 sm:flex-none justify-center"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 disabled={!resumeInfo.downloadUrl || resumeInfo.downloadUrl === '#'}
                 aria-label={t('about.downloadResume')}
               >
                 <Download className="w-4 h-4" />
-                {t('about.downloadResume')}
+                <span className="hidden sm:inline">{t('about.downloadResume')}</span>
+                <span className="sm:hidden">Download</span>
               </motion.button>
 
               {/* External View Button */}
               <motion.button
                 onClick={handleExternalView}
-                className="btn-secondary px-4 py-2 text-sm inline-flex items-center gap-2"
+                className="btn-secondary px-3 sm:px-4 py-2 text-sm inline-flex items-center gap-2 flex-1 sm:flex-none justify-center"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 disabled={!resumeInfo.viewUrl || resumeInfo.viewUrl === '#'}
                 aria-label={t('resume.preview.openExternal')}
               >
                 <ExternalLink className="w-4 h-4" />
-                {t('resume.preview.openExternal')}
+                <span className="hidden sm:inline">{t('resume.preview.openExternal')}</span>
+                <span className="sm:hidden">Open</span>
               </motion.button>
 
               {/* Close Button */}
@@ -246,4 +248,4 @@ const ResumePreview = ({ isOpen, onClose, resumeInfo, personalInfo }: ResumePrev
   )
 }
 
-export default ResumePreview 
+export default ResumePreview

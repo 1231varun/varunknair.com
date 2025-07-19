@@ -45,7 +45,7 @@ const Header = ({ theme, toggleTheme, personalInfo: _personalInfo, socialLinks: 
   return (
     <motion.header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
+        isScrolled || isMenuOpen
           ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-lg'
           : 'bg-transparent'
       }`}
@@ -138,7 +138,7 @@ const Header = ({ theme, toggleTheme, personalInfo: _personalInfo, socialLinks: 
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <motion.nav
-            className="md:hidden py-4 border-t border-gray-200 dark:border-gray-700"
+            className="md:hidden py-4 border-t border-gray-200 dark:border-gray-700 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md relative z-50"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
@@ -149,10 +149,12 @@ const Header = ({ theme, toggleTheme, personalInfo: _personalInfo, socialLinks: 
                 <motion.button
                   key={item.href}
                   onClick={() => {
-                    scrollToSection(item.href)
-                    setIsMenuOpen(false)
+                    setIsMenuOpen(false)  // Close menu first
+                    setTimeout(() => {     // Add delay before scrolling
+                      scrollToSection(item.href)
+                    }, 100)
                   }}
-                  className="text-left text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200 font-medium py-2"
+                  className="text-left text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200 font-medium py-2 px-4"
                   whileHover={{ x: 10 }}
                   whileTap={{ x: 0 }}
                 >
@@ -162,9 +164,21 @@ const Header = ({ theme, toggleTheme, personalInfo: _personalInfo, socialLinks: 
             </div>
           </motion.nav>
         )}
+
+        {/* Overlay when menu is open */}
+        {isMenuOpen && (
+          <motion.div
+            className="fixed inset-0 bg-black/20 z-30 md:hidden" // Lower z-index than nav
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsMenuOpen(false)}
+            style={{ marginTop: '4rem' }}
+          />
+        )}
       </div>
     </motion.header>
   )
 }
 
-export default Header 
+export default Header
