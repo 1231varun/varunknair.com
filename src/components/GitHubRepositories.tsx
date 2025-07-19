@@ -1,5 +1,5 @@
-import { useMemo, useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
+import { useMemo, useEffect, useState, useRef } from 'react'
+import { motion, useInView } from 'framer-motion'
 import { Github, Star, GitFork, ExternalLink, Eye } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { useScrollAnimation } from '@/hooks/useScrollAnimation'
@@ -19,8 +19,17 @@ const GitHubRepositories = ({
   className = '' 
 }: GitHubRepositoriesProps) => {
   const { t } = useTranslation()
-  const { ref, controls, animationCapability } = useScrollAnimation({ threshold: 0.2 })
+  const componentRef = useRef(null)
+  const isInView = useInView(componentRef, { once: true, amount: 0.2 })
+  const { controls, animationCapability } = useScrollAnimation({ threshold: 0.2 })
   const [showFallback, setShowFallback] = useState(false)
+
+  // Add this useEffect to handle initial visibility
+  useEffect(() => {
+    if (isInView) {
+      controls.start('visible')
+    }
+  }, [isInView, controls])
 
   // Early return check
   if (!githubUrl) {
@@ -41,8 +50,6 @@ const GitHubRepositories = ({
   }), [githubUrl, maxRepos, stableFeaturedRepos, stableManualProjects])
 
   const { projects: githubProjects, isLoading, error, retry, retryCount, hasAttempted } = useGitHubProjects(githubOptions)
-
-
 
   // Fallback timeout to prevent infinite loading
   useEffect(() => {
@@ -114,7 +121,7 @@ const GitHubRepositories = ({
   if (animationCapability === 'none') {
     // Create a simplified non-animated version of this component
     return (
-      <section id="github-repositories" className={`py-20 bg-gray-50 dark:bg-gray-800/50 ${className}`} ref={ref}>
+      <section id="github-repositories" className={`py-20 bg-gray-50 dark:bg-gray-800/50 ${className}`} ref={componentRef}>
         <div className="container-max-width section-padding">
           <div>
             <div className="text-center mb-16">
@@ -231,11 +238,15 @@ const GitHubRepositories = ({
   }
 
   return (
-    <section id="github-repositories" className={`py-20 bg-gray-50 dark:bg-gray-800/50 ${className}`} ref={ref}>
+    <section 
+      id="github-repositories" 
+      className={`py-20 bg-gray-50 dark:bg-gray-800/50 ${className}`} 
+      ref={componentRef}
+    >
       <div className="container-max-width section-padding">
         <motion.div
           variants={containerVariants}
-          initial="hidden"
+          initial={isInView ? "visible" : "hidden"}
           animate={controls}
         >
           {/* Header - Always show */}
@@ -504,4 +515,4 @@ const GitHubRepositories = ({
   )
 }
 
-export default GitHubRepositories 
+export default GitHubRepositories
